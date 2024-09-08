@@ -19,7 +19,6 @@ a {
 }
 
 .app {
-  display: flex;
   min-height: 100vh;
 }
 
@@ -384,6 +383,37 @@ a {
   width: fit-content;
   font-size: 1rem;
   letter-spacing: 0.2rem;
+}
+.dashboard .datas {
+  width: 90%;
+  margin: auto;
+}
+.dashboard .table-wrapper {
+  display: block;
+  overflow-x: scroll;
+  width: 100%;
+}
+.dashboard .data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  white-space: nowrap;
+  min-width: 500px;
+}
+.dashboard .data-table th,
+.dashboard .data-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+.dashboard .data-table th {
+  background-color: #f4f4f4;
+}
+.dashboard .data-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.dashboard .data-table tr:hover {
+  background-color: #f1f1f1;
 }
 
 /* Asztali nézet */

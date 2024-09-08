@@ -10,6 +10,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   const [openMenu, setOpenMenu] = useState(null); // The currently open submenu
   const [activeMenuItem, setActiveMenuItem] = useState('home'); // The active main menu item
 
+
+  
   const closeSidebar = () => {
     setIsOpen(false); // Close the sidebar
   };
@@ -39,6 +41,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       closeSidebar();
     }
   };
+
+  
+  
 
   return (
     <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>

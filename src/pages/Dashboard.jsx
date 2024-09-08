@@ -106,6 +106,94 @@ const Dashboard = () => {
           <DashboardCard title="Termékek" value={productCount} background={backgroundColors[2]} />
           <DashboardCard title="Össz. bevétel" value={`${formattedRevenue} FT`} background={backgroundColors[3]} />
         </div>
+        <section className="datas">
+          <h3>Legutóbbi Rendelések</h3>
+          <div className="table-wrapper">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>Rendelés ID</th>
+                  <th>Ügyfél ID</th>
+                  <th>Összesen</th>
+                  <th>Dátum</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.orders.slice(-5).map(order => (
+                  <tr key={order.OrderID}>
+                    <td>{order.OrderID}</td>
+                    <td>{order.CustomerID}</td>
+                    <td>{order.TotalDue} FT</td>
+                    <td>{new Date(order.OrderDate).toLocaleDateString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section className="datas">
+          <h3>Legújabb Vásárlók</h3>
+          <div className="table-wrapper">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>Vásárló ID</th>
+                  <th>Név</th>
+                  <th>Email</th>
+                  <th>Regisztráció dátuma</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.users.slice(-5).map(user => (
+                  <tr key={user.UserID}>
+                    <td>{user.UserID}</td>
+                    <td>{user.LastName} {user.FirstName}</td>
+                    <td>{user.EmailAddress}</td>
+                    <td>{new Date(user.updatedAt).toLocaleDateString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section className="datas">
+          <h3>Legnagyobb Bevételt Generáló Termékek</h3>
+          <div className="table-wrapper">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>Termék ID</th>
+                  <th>Név</th>
+                  <th>Bevétel</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.products
+                  .map(product => ({
+                    ...product,
+                    revenue: data.orders
+                      .filter(order => order.OrderItems.some(item => item.ProductID === product.ProductID))
+                      .reduce((total, order) => total + order.OrderItems.find(item => item.ProductID === product.ProductID).LineTotal, 0)
+                  }))
+                  .sort((a, b) => b.revenue - a.revenue)
+                  .slice(0, 5) // Top 5
+                  .map(product => (
+                    <tr key={product.ProductID}>
+                      <td>{product.ProductID}</td>
+                      <td>{product.BrandName} {product.Name}</td>
+                      <td>{product.revenue} FT</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+
+
+
         <button className='btn fresh-btn' onClick={handleRefresh}>Adatok frissítése</button>
       </div>
 

@@ -20,14 +20,13 @@ a {
 }
 
 .app {
-    display: flex;
     min-height: 100vh;
 }
 
 
 .app-content {
     flex-grow: 1;
-    // margin-left: 70px;
+
     margin-left: 0;
     transition: margin-left 0.3s ease;
     height: fit-content;
@@ -46,7 +45,7 @@ a {
     gap: .5rem;
     padding: .5rem 1rem;
     width: fit-content;
-    box-shadow: 2px 2px 8px  $bg-grey-1;
+    box-shadow: 2px 2px 8px $bg-grey-1;
 }
 
 .btn:hover {
