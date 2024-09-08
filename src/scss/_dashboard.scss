@@ -1,0 +1,61 @@
+.dashboard {
+    width: 100%;
+    padding: 1rem;
+    min-height: 100vh;
+
+    .data-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        .card-container {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 1rem;
+            
+        }
+
+        .dashboard-card {
+            flex: 1 1 300px; // Ez a tulajdonság biztosítja, hogy a kártyák rugalmasak legyenek
+            /* flex: 1 1 300px;: Ez a beállítás azt jelenti, hogy a kártyák rugalmasak (több helyet foglalhatnak, ha elérhető) és az alapértelmezett szélességük 300px.
+                Az első 1 a növekedési tényezőt jelöli, ami azt jelenti, hogy a kártyák a rendelkezésre álló helyen osztoznak.
+                A második 1 a zsugorodási tényezőt jelöli, ami azt jelenti, hogy ha szükséges, a kártyák összemegynek.
+                A harmadik 300px a kezdő szélességet jelöli. */
+            min-width: 300px;
+            height: 120px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            color: $bg-white;
+            justify-content: space-around;
+            overflow: hidden;
+            padding: 20px;
+            position: relative;
+            text-align: left;
+            text-transform: capitalize;
+
+
+            .dashboard-card-title {
+                font-weight: 600;
+                font-size: 1.1rem
+            }
+
+            .dashboard-card-value {
+                font-size: 2rem;
+                font-weight: bold;
+            }
+
+        }
+
+    }
+
+    .fresh-btn {
+        width: fit-content;
+        font-size: 1rem;
+        letter-spacing: .2rem;
+    }
+
+
+}

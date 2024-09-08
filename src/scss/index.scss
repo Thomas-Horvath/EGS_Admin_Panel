@@ -1,0 +1,62 @@
+@import 'variables';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 350px;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+.app-content {
+    flex-grow: 1;
+    // margin-left: 70px;
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+    height: fit-content;
+}
+
+
+
+
+.btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border: 1px solid $bg-grey;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem 1rem;
+    width: fit-content;
+    box-shadow: 2px 2px 8px  $bg-grey-1;
+}
+
+.btn:hover {
+    background-color: $main-color;
+    color: $bg-white;
+}
+
+@import 'login_page';
+@import 'sidebar';
+@import 'header';
+@import 'profile-icons';
+@import 'dashboard';
+@import 'mediaqueries';

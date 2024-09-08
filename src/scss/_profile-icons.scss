@@ -1,0 +1,38 @@
+.icon-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    .placholder-img {
+        width: 60px;
+        margin-left: .8rem;
+        border-radius: 50%;
+    }
+
+    .login-submenu {
+        position: absolute;
+        left: 0;
+        top: 60px;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        background: $bg-white;
+        color: $bg-dark;
+        border-radius: .25rem;
+        border: 2px solid $main-color;
+
+        // box-shadow: var(--box-shadow);
+        z-index: 2;
+
+        li {
+            padding: .5rem;
+
+            &:hover {
+                color: $white;
+                background-color: #888;
+            }
+        }
+    }
+}
