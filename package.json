@@ -1,4 +1,5 @@
 {
+  "homepage": "http://thomas-horvath.github.io/EGS_Admin_Panel ",
   "name": "egs_admin_panel_frontemd",
   "version": "0.1.0",
   "private": true,
@@ -23,7 +24,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "sass": "sass --no-source-map --watch src/scss/index.scss src/index.css"
+    "sass": "sass --no-source-map --watch src/scss/index.scss src/index.css",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -42,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.1"
   }
 }
