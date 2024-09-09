@@ -6,25 +6,24 @@
     align-items: center;
     justify-content: center;
     background: linear-gradient(#333333dd, #333333aa), url('/public/body-bg.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
 
     .form-container {
         width: 100vw;
         height: 100vh;
-
-
         display: flex;
         align-items: center;
         justify-content: center;
-
-        form {
-            border-radius: .5rem;
+        
+        .login-form {
             padding: 2rem;
             width: 450px;
             height: 600px;
+            background-color: transparent;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: $bg-grey-1;
         }
         hr {
             width: 100%;
@@ -35,11 +34,12 @@
             margin: 0 auto;
             padding-bottom: 1rem;
             color: $main-color;
-            text-shadow: 2px 2px 5px $white;
+            text-shadow: 2px 2px 5px $bg-grey;
         }
 
         .loginpage-label {
             padding: .4rem;
+            color: $bg-white;
         }
 
         .loginpage-input {
@@ -65,18 +65,22 @@
         .btn-container {
             display: flex;
             align-items: center;
-            justify-content: flex-end;
+            justify-content: center;
             margin-top: 1rem;
             width: 100%;
         }
 
         .login-btn {
-            width: 100%;
+            width: 80%;
             text-align: center;
             background-color: $main-color;
             color: $white;
             font-size: 1.2rem;
             justify-content: center;
+            box-shadow: 2px 2px 10px $bg-grey;
+            &:hover {
+                color: $bg-grey;
+            }
         }
 
 
@@ -97,10 +101,13 @@
             border: 2px solid $main-color;
          
         }
-        .error-text {
-            color: $main-color;
-            font-size: 1rem;
+        .error-text, .error-message  {
+            color: red;
+            text-shadow: 2px 2px 4px $bg-grey;
+            font-size: 1.2rem;
             align-items: center;
+        
+            text-align: center;
         }
 
      
@@ -111,12 +118,5 @@
             text-align: center;
         }
 
-        .error-message {
-            padding: .5rem;
-            background-color: $main-color;
-            color: $white;
-            border-radius: 5px;
-            text-align: center;
-        }
     }
 }

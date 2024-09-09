@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import DashboardCard from '../components/DashboardCard';
+import { FaUserFriends, FaShoppingBag, FaDollarSign } from "react-icons/fa";
+import { BsFillBoxSeamFill } from "react-icons/bs";
 
 
 const Dashboard = () => {
@@ -49,6 +51,7 @@ const Dashboard = () => {
 
   // Különálló függvény a frissítéshez
   const handleRefresh = () => {
+    window.scrollTo(0, 0)
     fetchAllData();
   };
 
@@ -58,9 +61,8 @@ const Dashboard = () => {
 
   if (loading) {
     return <div className='dashboard'>
-      <div className="data-cards">
+      <div className="data-loading">
         <div>Töltés...</div>
-        <button className='btn fresh-btn' onClick={handleRefresh}>Adatok frissítése</button>
       </div>
     </div>
   }
@@ -93,18 +95,43 @@ const Dashboard = () => {
     'linear-gradient(to right, #28a745, #81c784)', // Zöld
     'linear-gradient(to right, #007bff, #6baaf7)', // Kék
     'linear-gradient(to right, #dc3545, #f28b8c)', // Piros
-    'linear-gradient(to right, #6f42c1, #9f7edb)'
+    'linear-gradient(to right, #6f42c1, #9f7edb)' // lila
   ];
 
 
   return (
     <div className='dashboard'>
       <div className="data-cards">
-        <div className="card-container">
-          <DashboardCard title="Vásárlók" value={userCount} background={backgroundColors[0]} />
-          <DashboardCard title="Rendelések" value={orderCount} background={backgroundColors[1]} />
-          <DashboardCard title="Termékek" value={productCount} background={backgroundColors[2]} />
-          <DashboardCard title="Össz. bevétel" value={`${formattedRevenue} FT`} background={backgroundColors[3]} />
+        <div className="dashboard-card-container">
+          <DashboardCard
+            title="Vásárlók"
+            value={userCount}
+            background={backgroundColors[0]}
+            icon={<FaUserFriends />}
+            unit={'db'}
+          />
+          <DashboardCard
+            title="Rendelések"
+            value={orderCount}
+            background={backgroundColors[1]}
+            icon={<FaShoppingBag />}
+            unit={'db'}
+          />
+          <DashboardCard
+            title="Termékek"
+            value={productCount}
+            background={backgroundColors[2]}
+            icon={<BsFillBoxSeamFill />}
+            unit={'db'}
+          />
+          <DashboardCard
+            title="Össz. bevétel"
+            value={`${formattedRevenue}`}
+            background={backgroundColors[3]}
+            icon={<FaDollarSign />
+            } unit={'ft'}
+          />
+
         </div>
         <section className="datas">
           <h3>Legutóbbi Rendelések</h3>

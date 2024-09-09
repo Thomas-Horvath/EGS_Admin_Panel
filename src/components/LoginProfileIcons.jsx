@@ -1,7 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../contexts/AuthContext';
-import { img } from '../assets/assets'
+import { img } from '../assets/assets';
+import { MdAccountCircle } from "react-icons/md";
+import { IoMdSettings } from "react-icons/io";
+import { IoLogOut } from "react-icons/io5";
 
 const LoginProfileIcons = () => {
   const [profile, setProfile] = useState([]);
@@ -45,9 +48,11 @@ const LoginProfileIcons = () => {
       {/* Conditional rendering based on isOpen state */}
       {isOpen && (
         <ul className='login-submenu'>
-          <Link to="/profil" ><li>Profil</li></Link>
+          <li className='header'>Fiókom</li>
+          <Link to="/profil" ><li className='link'><MdAccountCircle /> Saját adatok</li></Link>
+          <Link to="/profil/szerkesztés" ><li className='link'><IoMdSettings /> Beállítás</li></Link>
           <hr/>
-          <li onClick={logout}>Kilépés</li>
+          <li className='link' onClick={logout}><IoLogOut /> Kilépés</li>
         </ul>
       )}
     </div>

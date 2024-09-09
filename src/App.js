@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { HashRouter as Router } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext'; // AuthContext importálása
 import AuthRoutes from './components/AuthRoutes';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const [isOpen, setIsOpen] = useState((window.innerWidth > 768));
@@ -9,7 +10,7 @@ function App() {
     const handleResize = () => {
       if (window.innerWidth < 768) {
         setIsOpen(false);
-      }else {
+      } else {
         setIsOpen(true);
       }
     };
@@ -25,6 +26,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
+        <ScrollToTop />
         <div className="app">
           <AuthRoutes isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>

@@ -72,12 +72,12 @@ const Login = () => {
   return (
     <div className='login-page'>
       <div className="form-container">
-        <form onSubmit={handleLogin} method='POST' noValidate>
+        <form className='login-form' onSubmit={handleLogin} method='POST' noValidate>
           <h1 className="heading">EGS - Admin Panel</h1>
          <hr/>
           <label className='loginpage-label' htmlFor="email">Felhasználó név:</label>
           <input
-            className='loginpage-input'
+            className={`loginpage-input ${errors.userName ? 'input-error' : ''}`}
             id="email"
             type="text"
             name='userName'

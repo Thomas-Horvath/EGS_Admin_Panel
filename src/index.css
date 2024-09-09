@@ -7,6 +7,7 @@
 
 body {
   min-width: 350px;
+  background-color: #f4f4f9;
 }
 
 li {
@@ -31,7 +32,7 @@ a {
 
 .btn {
   border: none;
-  background: transparent;
+  background: #b92038;
   cursor: pointer;
   border: 1px solid #333;
   display: flex;
@@ -40,11 +41,40 @@ a {
   padding: 0.5rem 1rem;
   width: fit-content;
   box-shadow: 2px 2px 8px #bbb;
+  color: #eee;
 }
 
 .btn:hover {
-  background-color: #b92038;
-  color: #eee;
+  background: transparent;
+  color: #333;
+}
+
+.data-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 2rem;
+  color: #b92038;
+}
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.card-container {
+  width: 100%;
+  height: 90%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-page {
@@ -55,6 +85,8 @@ a {
   align-items: center;
   justify-content: center;
   background: linear-gradient(rgba(51, 51, 51, 0.8666666667), rgba(51, 51, 51, 0.6666666667)), url("/public/body-bg.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 .login-page .form-container {
   width: 100vw;
@@ -63,15 +95,14 @@ a {
   align-items: center;
   justify-content: center;
 }
-.login-page .form-container form {
-  border-radius: 0.5rem;
+.login-page .form-container .login-form {
   padding: 2rem;
   width: 450px;
   height: 600px;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #bbb;
 }
 .login-page .form-container hr {
   width: 100%;
@@ -81,10 +112,11 @@ a {
   margin: 0 auto;
   padding-bottom: 1rem;
   color: #b92038;
-  text-shadow: 2px 2px 5px #fff;
+  text-shadow: 2px 2px 5px #333;
 }
 .login-page .form-container .loginpage-label {
   padding: 0.4rem;
+  color: #eee;
 }
 .login-page .form-container .loginpage-input {
   width: 100%;
@@ -106,17 +138,21 @@ a {
 .login-page .form-container .btn-container {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   margin-top: 1rem;
   width: 100%;
 }
 .login-page .form-container .login-btn {
-  width: 100%;
+  width: 80%;
   text-align: center;
   background-color: #b92038;
   color: #fff;
   font-size: 1.2rem;
   justify-content: center;
+  box-shadow: 2px 2px 10px #333;
+}
+.login-page .form-container .login-btn:hover {
+  color: #333;
 }
 .login-page .form-container .eye-icon-btn {
   background: #b92038;
@@ -132,22 +168,17 @@ a {
 .login-page .form-container .input-error {
   border: 2px solid #b92038;
 }
-.login-page .form-container .error-text {
-  color: #b92038;
-  font-size: 1rem;
+.login-page .form-container .error-text, .login-page .form-container .error-message {
+  color: red;
+  text-shadow: 2px 2px 4px #333;
+  font-size: 1.2rem;
   align-items: center;
+  text-align: center;
 }
 .login-page .form-container .error-container {
   height: 3rem;
   width: 80%;
   margin-top: 1rem;
-  text-align: center;
-}
-.login-page .form-container .error-message {
-  padding: 0.5rem;
-  background-color: #b92038;
-  color: #fff;
-  border-radius: 5px;
   text-align: center;
 }
 
@@ -318,19 +349,30 @@ a {
   left: 0;
   top: 60px;
   width: 100%;
-  text-align: center;
   display: flex;
   flex-direction: column;
   background: #eee;
   color: #212631;
   border-radius: 0.25rem;
-  border: 2px solid #b92038;
+  border: 2px solid #333;
+  box-shadow: 3px 3px 8px #bbb;
   z-index: 2;
 }
-.icon-container .login-submenu li {
+.icon-container .login-submenu .header {
+  background-color: #333;
   padding: 0.5rem;
+  color: #bbb;
+  padding-left: 1rem;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
 }
-.icon-container .login-submenu li:hover {
+.icon-container .login-submenu .link {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.icon-container .login-submenu .link:hover {
   color: #fff;
   background-color: #888;
 }
@@ -345,7 +387,7 @@ a {
   flex-direction: column;
   gap: 2rem;
 }
-.dashboard .data-cards .card-container {
+.dashboard .data-cards .dashboard-card-container {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -362,22 +404,37 @@ a {
   height: 120px;
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   color: #eee;
-  justify-content: space-around;
+  justify-content: space-between;
   overflow: hidden;
   padding: 20px;
   position: relative;
   text-align: left;
   text-transform: capitalize;
 }
-.dashboard .data-cards .dashboard-card .dashboard-card-title {
+.dashboard .data-cards .dashboard-card .dashboard-data-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.dashboard .data-cards .dashboard-card .dashboard-data-wrapper .dashboard-card-title {
   font-weight: 600;
   font-size: 1.1rem;
 }
-.dashboard .data-cards .dashboard-card .dashboard-card-value {
+.dashboard .data-cards .dashboard-card .dashboard-data-wrapper .dashboard-card-value {
   font-size: 2rem;
   font-weight: bold;
+}
+.dashboard .data-cards .dashboard-card .dashboard-data-wrapper .dashboard-card-value .unit {
+  margin-left: 0.5rem;
+  font-size: 1.4rem;
+}
+.dashboard .data-cards .dashboard-card .icon {
+  font-size: 3.5rem;
+  display: flex;
+  align-items: center;
 }
 .dashboard .fresh-btn {
   width: fit-content;
@@ -388,32 +445,172 @@ a {
   width: 90%;
   margin: auto;
 }
-.dashboard .table-wrapper {
+.dashboard .datas h3 {
+  font-size: 1.5rem;
+}
+.dashboard .datas .table-wrapper {
   display: block;
   overflow-x: scroll;
   width: 100%;
 }
-.dashboard .data-table {
+.dashboard .datas .data-table {
   width: 100%;
   border-collapse: collapse;
   margin: 1rem 0;
   white-space: nowrap;
   min-width: 500px;
 }
-.dashboard .data-table th,
-.dashboard .data-table td {
+.dashboard .datas .data-table th,
+.dashboard .datas .data-table td {
   border: 1px solid #ddd;
   padding: 0.75rem;
   text-align: left;
 }
-.dashboard .data-table th {
-  background-color: #f4f4f4;
+.dashboard .datas .data-table th {
+  background-color: #b92038;
+  color: #eee;
 }
-.dashboard .data-table tr:nth-child(even) {
+.dashboard .datas .data-table tr:nth-child(even) {
   background-color: #f9f9f9;
 }
-.dashboard .data-table tr:hover {
-  background-color: #f1f1f1;
+.dashboard .datas .data-table tr:hover {
+  background-color: rgba(185, 32, 56, 0.5);
+}
+
+.profile-card {
+  padding: 3rem;
+  max-width: 500px;
+  width: 100%;
+}
+
+.profile-header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 20px;
+  border: 3px solid #b92038;
+}
+
+.profile-header-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-header-info h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.profile-header-info p {
+  color: #666;
+  margin: 2px 0;
+}
+
+.status.active {
+  color: green;
+}
+
+.status.inactive {
+  color: red;
+}
+
+.divider {
+  border: 1px solid #ccc;
+  margin: 20px 0;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-info {
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.profile-info strong {
+  color: #b92038;
+}
+
+.profile-edit-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.profile-card-update {
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.profile-card-update h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.profile-card-update form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.profile-card-update form .form-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.profile-card-update form .form-container .form-group-container {
+  flex: 1;
+  min-width: calc(50% - 20px);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.profile-card-update form .form-container .form-group-container .form-group {
+  display: flex;
+  flex-direction: column;
+}
+.profile-card-update form .form-container .form-group-container .form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.profile-card-update form .form-container .form-group-container .form-group input,
+.profile-card-update form .form-container .form-group-container .form-group select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+@media (max-width: 768px) {
+  .profile-card-update form .form-container {
+    flex-direction: column;
+  }
+  .profile-card-update form .form-container .form-group-container {
+    min-width: 100%;
+  }
+}
+.profile-card-update form .massage-container {
+  height: 2rem;
+  text-align: center;
+}
+.profile-card-update form .massage-container .success-message {
+  color: green;
+}
+.profile-card-update form .profile-edit-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 20px;
 }
 
 /* Asztali nézet */
@@ -480,5 +677,9 @@ a {
   }
   .sidebar .menu-container .menu .menu-items .popup li a:hover {
     color: #bbb;
+  }
+  .login-page .form-container .login-form {
+    border-radius: 0.5rem;
+    background-color: rgba(187, 187, 187, 0.3);
   }
 }

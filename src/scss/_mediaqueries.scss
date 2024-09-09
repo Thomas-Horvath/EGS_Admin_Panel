@@ -75,19 +75,27 @@
 
                         li {
                             list-style: none;
-                             a{
+
+                            a {
                                 &:hover {
                                     color: $bg-grey-1;
                                 }
-                             }
+                            }
                         }
 
-                        
+
                     }
                 }
             }
         }
     }
 
-
+    .login-page {
+        .form-container {
+            .login-form {
+                border-radius: .5rem;
+                background-color: rgba($bg-grey-1, 0.3);
+            }
+        }
+    }
 }
