@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/EGS_Admin_Panel/static/css/main.0388d1df.css",
-    "main.js": "/EGS_Admin_Panel/static/js/main.0117cd50.js",
+    "main.css": "/EGS_Admin_Panel/static/css/main.17b0961f.css",
+    "main.js": "/EGS_Admin_Panel/static/js/main.a6b5e62e.js",
     "static/media/body-bg.jpg": "/EGS_Admin_Panel/static/media/body-bg.f7fbcff04fa665f78f80.jpg",
     "static/media/logo.svg": "/EGS_Admin_Panel/static/media/logo.217b211d8153fcdd8d7096aa9a24896d.svg",
     "static/media/favicon.svg": "/EGS_Admin_Panel/static/media/favicon.3e112213753a66b3293cfa8db9d5fef5.svg",
     "static/media/placeholder.png": "/EGS_Admin_Panel/static/media/placeholder.dd203dc807c0decab1e8.png",
     "index.html": "/EGS_Admin_Panel/index.html",
-    "main.0388d1df.css.map": "/EGS_Admin_Panel/static/css/main.0388d1df.css.map",
-    "main.0117cd50.js.map": "/EGS_Admin_Panel/static/js/main.0117cd50.js.map"
+    "main.17b0961f.css.map": "/EGS_Admin_Panel/static/css/main.17b0961f.css.map",
+    "main.a6b5e62e.js.map": "/EGS_Admin_Panel/static/js/main.a6b5e62e.js.map"
   },
   "entrypoints": [
-    "static/css/main.0388d1df.css",
-    "static/js/main.0117cd50.js"
+    "static/css/main.17b0961f.css",
+    "static/js/main.a6b5e62e.js"
   ]
 }
