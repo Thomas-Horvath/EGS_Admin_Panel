@@ -8,7 +8,7 @@
 
 body {
     min-width: 350px;
-    background-color: $body-bg;
+    background-color: $white;
 }
 
 li {
@@ -29,7 +29,7 @@ a {
     flex-grow: 1;
 
     margin-left: 0;
-    transition: margin-left 0.3s ease;
+    transition: margin-left 0.2s ease;
     height: fit-content;
 }
 
@@ -68,19 +68,10 @@ a {
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 10px;
+    padding: 2rem;
 }
 
-.card-container {
-    width: 100%;
-    height: 90%;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 
 @import 'login_page';
 @import 'sidebar';
@@ -89,4 +80,9 @@ a {
 @import 'dashboard';
 @import 'profile_page';
 @import 'profile_update_page';
+@import 'products_page';
+@import 'product_details_page';
+@import 'orders_page';
+@import 'users_pages';
+@import 'confirm_dialog';
 @import 'mediaqueries';

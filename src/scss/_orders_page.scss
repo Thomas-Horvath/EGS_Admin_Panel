@@ -1,0 +1,123 @@
+.orders-page-container {
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    width: 100%;
+  
+    .table-wrapper {
+      overflow-x: auto; // Csak a táblázat görgethető
+      min-height: 70vh;
+    }
+  
+    .orders-table {
+      width: 100%;
+      min-width: 600px; // Táblázat minimális szélessége
+      border-collapse: collapse;
+      margin-bottom: 20px;
+  
+      th,
+      td {
+        font-size: 14px;
+        padding: 8px;
+        border: 1px solid $table-border;
+        text-align: left;
+        white-space: nowrap; // A cellák tartalma egy sorban marad
+      }
+  
+      tr:hover {
+        background-color: rgba($main-color, 0.5);
+      }
+    }
+  
+    .icon-button {
+      padding: 0.5rem 0.7rem;
+      background-color: $main-color;
+      color: $white;
+      border: none;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      margin-right: 0.7rem;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: darken($main-color, 10%);
+      }
+  
+      &.delete-button {
+        background-color: #e74c3c;
+  
+        &:hover {
+          background-color: #c0392b;
+        }
+      }
+    }
+  
+    .pagination {
+      display: flex;
+      flex-wrap: wrap; // Rugalmas elrendezés több sorhoz, ha szükséges
+      justify-content: center;
+      list-style-type: none;
+      padding: 0;
+      margin: 10px 0;
+  
+      li {
+        margin: 2px;
+  
+        &.active {
+          background-color: $main-color;
+          border-radius: 4px;
+        }
+  
+        &.active a {
+          color: $white;
+        }
+  
+        a {
+          padding: 6px 10px;
+          font-size: 14px;
+          border: 1px solid $main-color;
+          color: $main-color;
+          text-decoration: none;
+          border-radius: 4px;
+          display: block;
+          text-align: center;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .orders-page-container {
+      .filter-container {
+        flex-direction: row;
+        gap: 20px;
+  
+        .input-group {
+          flex: 1;
+  
+          input[type="text"],
+          select {
+            width: auto;
+          }
+        }
+  
+        .button-group {
+          flex-direction: column;
+          align-items: flex-end;
+          justify-content: center;
+          gap: 0.5rem;
+          width: 100px;
+  
+          .btn {
+            width: 100px;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+  

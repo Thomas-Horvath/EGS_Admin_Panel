@@ -28,7 +28,6 @@ const Profile = () => {
 
   return (
     <div className="page-container">
-      <div className="card-container">
         <div className="profile-card">
           <div className="profile-header">
             <img
@@ -69,7 +68,7 @@ const Profile = () => {
             <Link to="/profil/szerkesztés"><button className="btn">Profil szerkesztése</button></Link>
           </div>
         </div>
-      </div>
+
     </div>
 
   );

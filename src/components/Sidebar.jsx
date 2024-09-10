@@ -29,6 +29,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
 
   const handleHomeLinkClick = (item) => {
     setActiveMenuItem(item);
+    setOpenMenu(null);
     if (window.innerWidth < 768) {
       closeSidebar();
     }

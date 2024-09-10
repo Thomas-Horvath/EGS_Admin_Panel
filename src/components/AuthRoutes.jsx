@@ -17,6 +17,7 @@ import Profile from '../pages/Profile';
 import ProfileUpdate from '../pages/ProfileUpdate';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import ProductDetails from '../pages/ProductDetails';
 
 const AuthRoutes = ({ isOpen, setIsOpen }) => {
   const { isLoggedIn } = useContext(AuthContext);
@@ -36,8 +37,9 @@ const AuthRoutes = ({ isOpen, setIsOpen }) => {
               <Routes>
                 <Route path="/home" element={<Dashboard />} />
                 <Route path="/termékek" element={<Products />} />
+                <Route path="/termékek/:id" element={<ProductDetails />} />
                 <Route path="/termékek/újtermék" element={<AddProduct />} />
-                <Route path="/termékek/:id/szerkesztes" element={<EditProduct />} />
+                <Route path="/termékek/szerkesztés/:id" element={<EditProduct />} />
                 <Route path="/rendelések" element={<Orders />} />
                 <Route path="/rendelések/:id" element={<OrderDetails />} />
                 <Route path="/vasarlók" element={<Customers />} />
