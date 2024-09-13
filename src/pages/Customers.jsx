@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
-import { FaEye, FaEdit , FaTrashAlt } from 'react-icons/fa';
+import { FaEye, FaEdit, FaTrashAlt } from 'react-icons/fa';
 import ConfirmDialog from '../components/ConfirmDialog';
 
 const Customers = () => {
@@ -10,6 +10,7 @@ const Customers = () => {
   const [pageCount, setPageCount] = useState(0);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [userIdToDelete, setUserIdToDelete] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
   const usersPerPage = 10;
 
   // Fetch users from API
@@ -40,6 +41,7 @@ const Customers = () => {
 
   // Handle page click for pagination
   const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
     const offset = selected * usersPerPage;
     const newCurrentUsers = users.slice(offset, offset + usersPerPage);
     setCurrentUsers(newCurrentUsers);
@@ -65,6 +67,7 @@ const Customers = () => {
       .then(() => {
         setShowConfirmDialog(false); // Bezárjuk a megerősítő ablakot
         fetchUsers(); // Törlés után újra lekérjük az adatokat
+        setCurrentPage(0);
       })
       .catch((error) => console.error('Error deleting user:', error));
   };
@@ -85,9 +88,8 @@ const Customers = () => {
             <thead>
               <tr>
                 <th>UserID</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Telefonszám</th>
+                <th>Aktív</th>
+                <th>Felhasználó név</th>
                 <th>Műveletek</th>
               </tr>
             </thead>
@@ -95,17 +97,16 @@ const Customers = () => {
               {currentUsers.map((user) => (
                 <tr key={user.UserID}>
                   <td>{user.UserID}</td>
+                  <td className={`status ${user.ActiveFlag ? 'active' : 'inactive'}`}>{user.ActiveFlag ? "Aktív" : "Inaktív"}</td>
                   <td>{user.UserName}</td>
-                  <td>{user.EmailAddress}</td>
-                  <td>{user.PhoneNumber}</td>
                   <td>
-                    <Link to={`/vasarlok/${user.UserID}`} className="icon-button">
+                    <Link to={`/vásárló/${user.UserID}`} className="icon-button">
                       <FaEye /> {/* Megtekintés ikon */}
                     </Link>
-                    <Link to={`/vasarlok/szerkesztés/${user.UserID}`} className="icon-button">
+                    <Link to={`/vásárló/szerkesztés/${user.UserID}`} className="icon-button">
                       <FaEdit /> {/* Szerkesztés ikon */}
                     </Link>
-                    <button onClick={() => handleDeleteClick(user.UserID)}className="icon-button delete-button">
+                    <button onClick={() => handleDeleteClick(user.UserID)} className="icon-button delete-button">
                       <FaTrashAlt /> {/* Törlés ikon */}
                     </button>
                   </td>
@@ -131,6 +132,7 @@ const Customers = () => {
         onPageChange={handlePageClick}
         containerClassName={'pagination'}
         activeClassName={'active'}
+        forcePage={currentPage}
       />
     </div>
   );

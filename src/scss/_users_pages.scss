@@ -2,12 +2,12 @@
 .customers-page-container, .admins-page-container {
     display: flex;
     flex-direction: column;
-    padding: 3rem;
+    padding: 1rem;
     width: 100%;
   
     .table-wrapper {
       overflow-x: auto; // Csak a táblázat görgethető
-      min-height: 70vh;
+      // min-height: 70vh;
     }
   
     .users-table {
@@ -93,6 +93,9 @@
   
   // Responsive styles for larger screens
   @media (min-width: 768px) {
+    .customers-page-container, .admins-page-container {
+      padding: 3rem;
+    }
     .users-page-container {
       .filter-container {
         flex-direction: row;

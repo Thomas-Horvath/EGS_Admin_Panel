@@ -1,10 +1,11 @@
 
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState} from 'react';
+import { Link , useNavigate } from 'react-router-dom';
 import { img } from '../assets/assets';
 
 const Profile = () => {
   const [profileData, setProfileData] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = sessionStorage.getItem('token');
@@ -64,7 +65,8 @@ const Profile = () => {
             </div>
           </div>
 
-          <div className="profile-edit-btn-wrapper">
+          <div className="button-group">
+          <button onClick={() => navigate("/home")} className="btn">Vissza</button>
             <Link to="/profil/szerkesztés"><button className="btn">Profil szerkesztése</button></Link>
           </div>
         </div>

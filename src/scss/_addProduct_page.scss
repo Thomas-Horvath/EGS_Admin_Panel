@@ -1,0 +1,140 @@
+.update-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+
+    h2 {
+        margin-bottom: 1.2rem;
+    }
+
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .form-group {
+            width: 100%;
+            max-width: 320px;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+
+            label {
+                margin-bottom: .4rem;
+            }
+
+            input,
+            select,
+            textarea {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid $bg-grey-1;
+                border-radius: 4px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            select {
+                background: transparent;
+            }
+
+            input:focus,
+            select:focus,
+            textarea:focus {
+                outline: 2px solid $bg-grey;
+            }
+
+            input[type="file"] {
+                width: 100%;
+
+            }
+
+            textarea {
+                font-family: Arial, Helvetica, sans-serif;
+                min-height: 100px;
+            }
+
+            .input-error {
+
+                outline: 1px solid $error;
+            }
+
+            .error {
+                color: $error;
+                font-size: 0.875em;
+                margin-top: 5px;
+            }
+
+            .alert {
+                color: $succsess;
+                font-size: 1em;
+                margin-top: 10px;
+            }
+        }
+
+
+        // password 
+        .password-wrapper {
+            display: flex;
+        }
+
+        .password-toggle-btn {
+            box-shadow: none;
+        }
+        .password-toggle-btn:hover {
+            background-color: $main-color;
+            color: $bg-white;
+        } 
+
+        // chackbox styles
+
+        label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* Térköz a checkbox és a szöveg között */
+        }
+
+        /* Alapértelmezett checkbox elrejtése */
+        input[type="checkbox"] {
+            display: none;
+        }
+
+
+        .custom-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid $bg-grey-1;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .custom-checkbox-icon {
+            color: #fff;
+            font-size: 16px;
+            position: absolute;
+        }
+
+        input[type="checkbox"]:checked+.custom-checkbox {
+            background-color: $main-color;
+            /* Háttér színe, ha be van pipálva */
+            border-color: $main-color;
+            /* Keret színe, ha be van pipálva */
+        }
+
+        input[type="checkbox"]:checked+.custom-checkbox .custom-checkbox-icon {
+            color: #fff;
+            /* Pipa színe, ha be van pipálva */
+        }
+
+
+
+    }
+}

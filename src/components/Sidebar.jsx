@@ -11,7 +11,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   const [activeMenuItem, setActiveMenuItem] = useState('home'); // The active main menu item
 
 
-  
+
   const closeSidebar = () => {
     setIsOpen(false); // Close the sidebar
   };
@@ -43,8 +43,8 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
     }
   };
 
-  
-  
+
+
 
   return (
     <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
@@ -59,6 +59,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         {isOpen ? <img className='logo' src={img.logo} alt="logo" /> : <img className='logo-fav' src={img.favicon} alt="logo" />}
 
         <ul className='menu'>
+
+
+
           <li className='menu-items'>
             <Link
               to="/home"
@@ -69,6 +72,9 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
               {isOpen && <span className="menu-text">Kezdőlap</span>}
             </Link>
           </li>
+
+
+
 
           <li className='menu-items'>
             <div
@@ -86,37 +92,34 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
             )}
           </li>
 
+
+
           <li className='menu-items'>
-            <div
-              className={`menu-items-link ${activeMenuItem === 'orders' ? 'active' : ''}`}
+          <Link
+              to="/rendelések"
+              className={`menu-items-link  ${activeMenuItem === 'orders' ? 'active' : ''}`}
               onClick={() => handleMainLinkClick('orders')}
             >
               <BsFileEarmarkPlusFill className='menu-icons' />
-              {isOpen && <span className="menu-text">Rendelések <RiArrowDropDownLine /></span>}
-            </div>
-            {openMenu === 'orders' && (
-              <ul className={`submenu ${isOpen ? '' : 'popup'}`}>
-                <li><Link to="/rendelések" onClick={handleLinkClick}>Rendelések listája</Link></li>
-                <li><Link to="/rendelések/:id" onClick={handleLinkClick}>Rendelés részletei</Link></li>
-              </ul>
-            )}
+              {isOpen && <span className="menu-text">Rendelések</span>}
+            </Link>
           </li>
 
+
+
+
           <li className='menu-items'>
-            <div
-              className={`menu-items-link ${activeMenuItem === 'customers' ? 'active' : ''}`}
-              onClick={() => handleMainLinkClick('customers')}
+          <Link
+              to="/vásárlók"
+              className={`menu-items-link  ${activeMenuItem === 'customers' ? 'active' : ''}`}
+              onClick={() => handleHomeLinkClick('customers')}
             >
               <FaUser className='menu-icons' />
-              {isOpen && <span className="menu-text">Vásárlók <RiArrowDropDownLine /></span>}
-            </div>
-            {openMenu === 'customers' && (
-              <ul className={`submenu ${isOpen ? '' : 'popup'}`}>
-                <li><Link to="/vasarlók" onClick={handleLinkClick}>Vásárlók listája</Link></li>
-                <li><Link to="/vasarlók/uj" onClick={handleLinkClick}>Új vásárló hozzáadása</Link></li>
-              </ul>
-            )}
+              {isOpen && <span className="menu-text">Vásárlók</span>}
+            </Link>
           </li>
+
+
 
           <li className='menu-items'>
             <div

@@ -1,12 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 
 const ProfileUpdate = () => {
 
-  const [formData, setFormData] = useState({});
+ 
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    FirstName: '',
+    LastName: '',
+    JobTitle: '',
+    AdminRole: '',
+    ActiveFlag: 'true',
+    UserName: '',
+    EmailAddress: '',
+    PhoneNumber: '',
+    BirthDate: '',
+    Address: '',
+    Password: '' // alapértelmezett üres érték
+  });
+  
 
   useEffect(() => {
     const token = sessionStorage.getItem('token');
@@ -22,7 +38,10 @@ const ProfileUpdate = () => {
       .then((res) => res.json())
       .then((data) => {
 
-        setFormData(data);
+        setFormData({
+          ...data,
+          Password: '', // Jelszó üresen marad
+        });
       })
       .catch((err) => console.error(err));
   }, []);
@@ -50,7 +69,9 @@ const ProfileUpdate = () => {
       EmailAddress,
       PhoneNumber,
       BirthDate,
-      Address
+      Address,
+      Password,
+      IsAdmin = true
     } = formData;
 
     const payload = {
@@ -63,8 +84,14 @@ const ProfileUpdate = () => {
       EmailAddress,
       PhoneNumber,
       BirthDate,
-      Address
+      Address,
+      IsAdmin
     };
+
+     // Ha a Password mező nem üres, akkor hozzáadjuk a payloadhoz
+     if (Password && Password.trim() !== '') {
+      payload.Password = Password;
+    }
 
     fetch('https://thomasapi.eu/api/profileupdate', {
       method: 'PUT',
@@ -85,8 +112,13 @@ const ProfileUpdate = () => {
       .catch((err) => console.error(err));
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+
   return (
-    <div className="profile-card-update">
+    <div className="update-container">
       <h2>Profil szerkesztése</h2>
 
       <form onSubmit={handleSubmit}>
@@ -144,6 +176,28 @@ const ProfileUpdate = () => {
                 <option value="false">Inaktív</option>
               </select>
             </div>
+
+            <div className="form-group">
+              <label htmlFor="Password">Új Jelszó:</label>
+              <div className="password-wrapper">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  id="Password"
+                  name="Password"
+                  value={formData.Password}
+                  onChange={handleInputChange}
+                  placeholder='Új jelszó'
+                />
+                <button
+                  type="button"
+                  className="password-toggle-btn btn"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+            </div>
+
           </div>
           <div className="form-group-container">
             <div className="form-group">
@@ -202,7 +256,7 @@ const ProfileUpdate = () => {
           {message && <div className="success-message">{message}</div>}
         </div>
 
-        <div className="profile-edit-btn-wrapper">
+        <div className="button-group">
           <button type="button" onClick={() => navigate('/profil')} className="btn">Vissza</button>
           <button type="submit" className="btn">Mentés</button>
         </div>

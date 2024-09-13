@@ -8,6 +8,7 @@
 body {
   min-width: 350px;
   background-color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 li {
@@ -64,6 +65,13 @@ a {
   align-items: center;
   width: 100%;
   padding: 2rem;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 20px;
 }
 
 .login-page {
@@ -378,6 +386,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  align-items: center;
 }
 .dashboard .data-cards .dashboard-card-container {
   width: 100%;
@@ -470,7 +479,7 @@ a {
 }
 
 .profile-card {
-  padding: 3rem;
+  padding: 0.5rem;
   max-width: 500px;
   width: 100%;
 }
@@ -542,63 +551,63 @@ a {
   margin-top: 20px;
 }
 
-.profile-card-update {
+.update-container {
   padding: 20px;
   max-width: 1000px;
   margin: 0 auto;
 }
-.profile-card-update h2 {
+.update-container h2 {
   margin-bottom: 20px;
   text-align: center;
 }
-.profile-card-update form {
+.update-container form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.profile-card-update form .form-container {
+.update-container form .form-container {
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
 }
-.profile-card-update form .form-container .form-group-container {
+.update-container form .form-container .form-group-container {
   flex: 1;
   min-width: calc(50% - 20px);
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
-.profile-card-update form .form-container .form-group-container .form-group {
+.update-container form .form-container .form-group-container .form-group {
   display: flex;
   flex-direction: column;
 }
-.profile-card-update form .form-container .form-group-container .form-group label {
+.update-container form .form-container .form-group-container .form-group label {
   margin-bottom: 5px;
   font-weight: bold;
 }
-.profile-card-update form .form-container .form-group-container .form-group input,
-.profile-card-update form .form-container .form-group-container .form-group select {
+.update-container form .form-container .form-group-container .form-group input,
+.update-container form .form-container .form-group-container .form-group select {
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 16px;
 }
 @media (max-width: 768px) {
-  .profile-card-update form .form-container {
+  .update-container form .form-container {
     flex-direction: column;
   }
-  .profile-card-update form .form-container .form-group-container {
+  .update-container form .form-container .form-group-container {
     min-width: 100%;
   }
 }
-.profile-card-update form .massage-container {
+.update-container form .massage-container {
   height: 2rem;
   text-align: center;
 }
-.profile-card-update form .massage-container .success-message {
+.update-container form .massage-container .success-message {
   color: green;
 }
-.profile-card-update form .profile-edit-btn-wrapper {
+.update-container form .button-group {
   display: flex;
   justify-content: center;
   gap: 2rem;
@@ -608,7 +617,7 @@ a {
 .product-page-container {
   display: flex;
   flex-direction: column;
-  padding: 3rem;
+  padding: 1rem;
   width: 100%;
 }
 .product-page-container .search-alert {
@@ -838,6 +847,117 @@ a {
     font-size: 1rem;
   }
 }
+.update-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.update-container h2 {
+  margin-bottom: 1.2rem;
+}
+.update-container form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Alapértelmezett checkbox elrejtése */
+}
+.update-container form .form-group {
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.update-container form .form-group label {
+  margin-bottom: 0.4rem;
+}
+.update-container form .form-group input,
+.update-container form .form-group select,
+.update-container form .form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.update-container form .form-group select {
+  background: transparent;
+}
+.update-container form .form-group input:focus,
+.update-container form .form-group select:focus,
+.update-container form .form-group textarea:focus {
+  outline: 2px solid #333;
+}
+.update-container form .form-group input[type=file] {
+  width: 100%;
+}
+.update-container form .form-group textarea {
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100px;
+}
+.update-container form .form-group .input-error {
+  outline: 1px solid #b92038;
+}
+.update-container form .form-group .error {
+  color: #b92038;
+  font-size: 0.875em;
+  margin-top: 5px;
+}
+.update-container form .form-group .alert {
+  color: green;
+  font-size: 1em;
+  margin-top: 10px;
+}
+.update-container form .password-wrapper {
+  display: flex;
+}
+.update-container form .password-toggle-btn {
+  box-shadow: none;
+}
+.update-container form .password-toggle-btn:hover {
+  background-color: #b92038;
+  color: #eee;
+}
+.update-container form label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* Térköz a checkbox és a szöveg között */
+}
+.update-container form input[type=checkbox] {
+  display: none;
+}
+.update-container form .custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #bbb;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+.update-container form .custom-checkbox-icon {
+  color: #fff;
+  font-size: 16px;
+  position: absolute;
+}
+.update-container form input[type=checkbox]:checked + .custom-checkbox {
+  background-color: #b92038;
+  /* Háttér színe, ha be van pipálva */
+  border-color: #b92038;
+  /* Keret színe, ha be van pipálva */
+}
+.update-container form input[type=checkbox]:checked + .custom-checkbox .custom-checkbox-icon {
+  color: #fff;
+  /* Pipa színe, ha be van pipálva */
+}
+
 .orders-page-container {
   display: flex;
   flex-direction: column;
@@ -944,12 +1064,11 @@ a {
 .customers-page-container, .admins-page-container {
   display: flex;
   flex-direction: column;
-  padding: 3rem;
+  padding: 1rem;
   width: 100%;
 }
 .customers-page-container .table-wrapper, .admins-page-container .table-wrapper {
   overflow-x: auto;
-  min-height: 70vh;
 }
 .customers-page-container .users-table, .admins-page-container .users-table {
   width: 100%;
@@ -1022,6 +1141,9 @@ a {
 }
 
 @media (min-width: 768px) {
+  .customers-page-container, .admins-page-container {
+    padding: 3rem;
+  }
   .users-page-container .filter-container {
     flex-direction: row;
     gap: 20px;

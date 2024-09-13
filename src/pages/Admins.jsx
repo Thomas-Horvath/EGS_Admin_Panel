@@ -10,6 +10,7 @@ const Admins = () => {
   const [pageCount, setPageCount] = useState(0);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [userIdToDelete, setUserIdToDelete] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
   const usersPerPage = 10;
 
   // Fetch users from API
@@ -40,6 +41,7 @@ const Admins = () => {
 
   // Handle page click for pagination
   const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
     const offset = selected * usersPerPage;
     const newCurrentUsers = users.slice(offset, offset + usersPerPage);
     setCurrentUsers(newCurrentUsers);
@@ -50,7 +52,7 @@ const Admins = () => {
 
 
 
-  
+
   // delete function
   const handleDeleteClick = (userId) => {
     setUserIdToDelete(userId); // Tároljuk a törlendő felhasználó ID-jét
@@ -70,6 +72,7 @@ const Admins = () => {
       .then(() => {
         setShowConfirmDialog(false); // Bezárjuk a megerősítő ablakot
         fetchUsers(); // Törlés után újra lekérjük az adatokat
+        setCurrentPage(0);
       })
       .catch((error) => console.error('Error deleting user:', error));
   };
@@ -90,9 +93,9 @@ const Admins = () => {
             <thead>
               <tr>
                 <th>UserID</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Telefonszám</th>
+                <th>Aktív</th>
+                <th>Felhasználó név</th>
+                <th>Szerepkör</th>
                 <th>Műveletek</th>
               </tr>
             </thead>
@@ -100,9 +103,9 @@ const Admins = () => {
               {currentUsers.map((user) => (
                 <tr key={user.UserID}>
                   <td>{user.UserID}</td>
+                  <td className={`status ${user.ActiveFlag ? 'active' : 'inactive'}`}>{user.ActiveFlag ? "Aktív" : "Inaktív"}</td>
                   <td>{user.UserName}</td>
-                  <td>{user.EmailAddress}</td>
-                  <td>{user.PhoneNumber}</td>
+                  <td>{user.AdminRole}</td>
                   <td>
                     <Link to={`/adminok/${user.UserID}`} className="icon-button">
                       <FaEye /> {/* Megtekintés ikon */}
@@ -138,6 +141,7 @@ const Admins = () => {
         onPageChange={handlePageClick}
         containerClassName={'pagination'}
         activeClassName={'active'}
+        forcePage={currentPage} 
       />
     </div>
   );

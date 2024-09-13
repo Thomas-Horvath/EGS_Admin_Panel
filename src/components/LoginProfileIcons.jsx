@@ -49,8 +49,8 @@ const LoginProfileIcons = () => {
       {isOpen && (
         <ul className='login-submenu'>
           <li className='header'>Fiókom</li>
-          <Link to="/profil" ><li className='link'><MdAccountCircle /> Saját adatok</li></Link>
-          <Link to="/profil/szerkesztés" ><li className='link'><IoMdSettings /> Beállítás</li></Link>
+          <li ><Link className='link' to="/profil" ><MdAccountCircle /> Saját adatok</Link></li>
+          <li ><Link className='link' to="/profil/szerkesztés" ><IoMdSettings /> Beállítás</Link></li>
           <hr/>
           <li className='link' onClick={logout}><IoLogOut /> Kilépés</li>
         </ul>

@@ -1,7 +1,7 @@
 .product-page-container {
     display: flex;
     flex-direction: column;
-    padding: 3rem;
+    padding: 1rem;
     width: 100%;
 
     .search-alert {
@@ -55,6 +55,7 @@
 
     .table-wrapper {
         overflow-x: auto; // Csak a táblázat görgethető
+      
     }
 
     .product-table {

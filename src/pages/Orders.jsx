@@ -2,11 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { FaEye, FaTrashAlt, FaEdit } from 'react-icons/fa';
+import ConfirmDialog from '../components/ConfirmDialog';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   const [currentOrders, setCurrentOrders] = useState([]);
   const [pageCount, setPageCount] = useState(0);
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [orderIdToDelete, setOrderIdToDelete] = useState(null);
+  const [currentPage, setCurrentPage] = useState(0);
+
   const ordersPerPage = 10;
 
   // Fetch orders from API
@@ -34,28 +39,52 @@ const Orders = () => {
     fetchOrders();
   }, []);
 
+
+
   // Handle page click for pagination
   const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
     const offset = selected * ordersPerPage;
     const newCurrentOrders = orders.slice(offset, offset + ordersPerPage);
     setCurrentOrders(newCurrentOrders);
     window.scrollTo(0, 0);
   };
 
-  // Delete order function (example)
-  const deleteOrder = (orderId) => {
+  
+  // delete function
+  const handleDeleteClick = (orderId) => {
+    setOrderIdToDelete(orderId); 
+    setShowConfirmDialog(true); 
+    console.log(orderId);
+  };
+
+
+  const deleteOrder = () => {
     const token = sessionStorage.getItem('token');
-    fetch(`https://thomasapi.eu/api/order/${orderId}`, {
+    fetch(`https://thomasapi.eu/api/order/${orderIdToDelete}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`,
       },
     })
       .then(() => {
-        fetchOrders(); // Törlés után újra lekérjük az adatokat
+        setShowConfirmDialog(false); 
+        fetchOrders();
+        setCurrentPage(0);
       })
-      .catch((error) => console.error('Error deleting order:', error));
+      .catch((error) => console.error('Error deleting product:', error));
   };
+
+
+
+  const cancelDelete = () => {
+    setShowConfirmDialog(false); 
+    setOrderIdToDelete(null); 
+  };
+
+
+
+
 
   return (
     <div className="orders-page-container">
@@ -82,13 +111,13 @@ const Orders = () => {
                   <td>{new Date(order.OrderDate).toLocaleDateString()}</td>
                   <td>{order.TotalDue} Ft</td>
                   <td>
-                    <Link to={`/rendelesek/${order.OrderID}`} className="icon-button">
+                    <Link to={`/rendelés/${order.OrderID}`} className="icon-button">
                       <FaEye /> {/* Megtekintés ikon */}
                     </Link>
-                    <Link to={`/rendelesek/szerkesztés/${order.OrderID}`} className="icon-button">
+                    <Link to={`/rendelés/szerkesztés/${order.OrderID}`} className="icon-button">
                       <FaEdit /> {/* Szerkesztés ikon */}
                     </Link>
-                    <button onClick={() => deleteOrder(order.OrderID)} className="icon-button delete-button">
+                    <button onClick={() => handleDeleteClick(order.OrderID)} className="icon-button delete-button">
                       <FaTrashAlt /> {/* Törlés ikon */}
                     </button>
                   </td>
@@ -97,6 +126,18 @@ const Orders = () => {
             </tbody>
           </table>
         )}
+
+
+        {showConfirmDialog && (
+          <ConfirmDialog
+            message="Biztosan törölni szeretnéd a rendelést?"
+            onConfirm={deleteOrder}
+            onCancel={cancelDelete}
+          />
+        )}
+
+
+
       </div>
       <ReactPaginate
         previousLabel={'Előző'}
@@ -105,6 +146,7 @@ const Orders = () => {
         onPageChange={handlePageClick}
         containerClassName={'pagination'}
         activeClassName={'active'}
+        forcePage={currentPage} 
       />
     </div>
   );
