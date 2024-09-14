@@ -10,6 +10,7 @@ const EditCustomer = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     FirstName: '',
     LastName: '',
@@ -26,6 +27,7 @@ const EditCustomer = () => {
   
 
   useEffect(() => {
+    setLoading(true);
     const token = sessionStorage.getItem('token');
 
     fetch(`https://thomasapi.eu/api/user/${id}`, {
@@ -44,10 +46,13 @@ const EditCustomer = () => {
           Password: '', // Jelszó üresen marad
         });
 
-       
+        setLoading(false);
       })
-      .catch((err) => console.error(err));
-  }, []);
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+  });
+  }, [id]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -107,7 +112,7 @@ const EditCustomer = () => {
       .then((data) => {
         setMessage('Sikeres frissítés!');
         setTimeout(() => {
-          navigate('/adminok');
+          navigate('/vásárlók');
         }, 2000);
       })
       .catch((err) => console.error(err));
@@ -118,6 +123,12 @@ const EditCustomer = () => {
     setShowPassword(!showPassword);
   };
 
+
+  if (loading) {
+    return <div className="data-loading">
+      <div>Töltés...</div>
+    </div>
+  }
 
   return (
     <div className="update-container">

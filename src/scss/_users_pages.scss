@@ -5,6 +5,9 @@
     padding: 1rem;
     width: 100%;
   
+    h1 {
+      margin-bottom: 1rem;
+    }
     .table-wrapper {
       overflow-x: auto; // Csak a táblázat görgethető
       // min-height: 70vh;

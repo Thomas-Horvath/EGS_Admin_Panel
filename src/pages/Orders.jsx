@@ -11,12 +11,14 @@ const Orders = () => {
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [orderIdToDelete, setOrderIdToDelete] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const ordersPerPage = 10;
 
   // Fetch orders from API
   const fetchOrders = () => {
-    const token = sessionStorage.getItem('token'); 
+    setLoading(true);
+    const token = sessionStorage.getItem('token');
     fetch('https://thomasapi.eu/api/orders', {
       method: 'GET',
       headers: {
@@ -29,10 +31,14 @@ const Orders = () => {
       .then((data) => {
         setOrders(data);
         const offset = 0;
-        setCurrentOrders(data.slice(offset, ordersPerPage)); 
+        setCurrentOrders(data.slice(offset, ordersPerPage));
         setPageCount(Math.ceil(data.length / ordersPerPage));
+        setLoading(false);
       })
-      .catch((error) => console.error('Error fetching orders:', error));
+      .catch((error) => {
+        console.error('Error fetching orders:', error);
+        setLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -50,12 +56,11 @@ const Orders = () => {
     window.scrollTo(0, 0);
   };
 
-  
+
   // delete function
   const handleDeleteClick = (orderId) => {
-    setOrderIdToDelete(orderId); 
-    setShowConfirmDialog(true); 
-    console.log(orderId);
+    setOrderIdToDelete(orderId);
+    setShowConfirmDialog(true);
   };
 
 
@@ -68,21 +73,26 @@ const Orders = () => {
       },
     })
       .then(() => {
-        setShowConfirmDialog(false); 
+        setShowConfirmDialog(false);
         fetchOrders();
         setCurrentPage(0);
       })
-      .catch((error) => console.error('Error deleting product:', error));
+      .catch((error) => console.error('Error:', error));
   };
 
 
 
   const cancelDelete = () => {
-    setShowConfirmDialog(false); 
-    setOrderIdToDelete(null); 
+    setShowConfirmDialog(false);
+    setOrderIdToDelete(null);
   };
 
 
+  if (loading) {
+    return <div className="data-loading">
+      <div>Töltés...</div>
+    </div>
+  }
 
 
 
@@ -146,7 +156,7 @@ const Orders = () => {
         onPageChange={handlePageClick}
         containerClassName={'pagination'}
         activeClassName={'active'}
-        forcePage={currentPage} 
+        forcePage={currentPage}
       />
     </div>
   );

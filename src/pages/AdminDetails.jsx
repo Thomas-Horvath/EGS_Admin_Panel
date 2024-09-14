@@ -1,14 +1,16 @@
 
 import React, { useEffect, useState } from 'react';
-import { Link, useParams , useNavigate} from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { img } from '../assets/assets';
 
 const AdminDetails = () => {
   const [profileData, setProfileData] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const token = sessionStorage.getItem('token');
 
     fetch(`https://thomasapi.eu/api/user/${id}`, {
@@ -20,12 +22,24 @@ const AdminDetails = () => {
       mode: 'cors',
     })
       .then((res) => res.json())
-      .then((data) => setProfileData(data))
-      .catch((err) => console.error(err));
-  }, []);
+      .then((data) => {
+        setProfileData(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, [id]);
 
   if (!profileData) {
     return <div className="data-loading">Töltés...</div>;
+  }
+
+  if (loading) {
+    return <div className="data-loading">
+      <div>Töltés...</div>
+    </div>
   }
 
   return (

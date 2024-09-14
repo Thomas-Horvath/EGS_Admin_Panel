@@ -98,7 +98,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           <Link
               to="/rendelések"
               className={`menu-items-link  ${activeMenuItem === 'orders' ? 'active' : ''}`}
-              onClick={() => handleMainLinkClick('orders')}
+              onClick={() => handleHomeLinkClick('orders')}
             >
               <BsFileEarmarkPlusFill className='menu-icons' />
               {isOpen && <span className="menu-text">Rendelések</span>}

@@ -10,6 +10,7 @@ const EditAdmin = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     FirstName: '',
     LastName: '',
@@ -23,9 +24,10 @@ const EditAdmin = () => {
     Address: '',
     Password: '' // alapértelmezett üres érték
   });
-  
+
 
   useEffect(() => {
+    setLoading(true);
     const token = sessionStorage.getItem('token');
 
     fetch(`https://thomasapi.eu/api/user/${id}`, {
@@ -44,10 +46,13 @@ const EditAdmin = () => {
           Password: '', // Jelszó üresen marad
         });
 
-       
+        setLoading(false);
       })
-      .catch((err) => console.error(err));
-  }, []);
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, [id]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -120,6 +125,13 @@ const EditAdmin = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
+
+  if (loading) {
+    return <div className="data-loading">
+      <div>Töltés...</div>
+    </div>
+  }
 
 
   return (

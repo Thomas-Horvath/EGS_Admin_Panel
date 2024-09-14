@@ -8,6 +8,7 @@ const EditProduct = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState('');
   const [subCategory, setSubCategory] = useState('');
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     Name: '',
     Model: '',
@@ -19,8 +20,8 @@ const EditProduct = () => {
     FretBoard: '',
     Pickup: '',
     Weight: 0,
-    ChannelsNumber: 1,
-    SpeakersNumber: 1,
+    ChannelsNumber: 0,
+    SpeakersNumber: 0,
     Wattage: 0,
     Width: 0,
     Length: 0,
@@ -51,6 +52,7 @@ const EditProduct = () => {
 
 
   useEffect(() => {
+    setLoading(true);
     // Termék adatainak lekérése az API-ból
     fetch(`https://thomasapi.eu/api/product/${id}`, {
       method: 'GET',
@@ -61,12 +63,15 @@ const EditProduct = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log('Product data:', data); // Ellenőrizzük, hogy az adatok helyesen jönnek-e
         setFormData(data);
         setCategory(data.CategoryName);
         setSubCategory(data.SubCategoryName);
+        setLoading(false);
       })
-      .catch(err => console.error('Fetch error:', err)); // Hibakezelés
+      .catch(err => {
+        console.error('Fetch error:', err);
+        setLoading(false);
+      }); // Hibakezelés
   }, [id]);
 
 
@@ -132,7 +137,7 @@ const EditProduct = () => {
       return;
     }
 
-    console.log("klikk")
+   
     const formDataToSend = new FormData();
 
     for (const key in formData) {
@@ -149,10 +154,7 @@ const EditProduct = () => {
       formDataToSend.append(key, formData[key]);
     }
 
-    for (let [key, value] of formDataToSend.entries()) {
-      console.log(key, value);
-    }
-
+    
 
     const token = sessionStorage.getItem('token');
 
@@ -174,6 +176,12 @@ const EditProduct = () => {
         setSuccessMessage('Hiba történt a frissítés során.');
       });
   };
+
+  if (loading) {
+    return <div className="data-loading">
+      <div>Töltés...</div>
+    </div>
+  }
 
   return (
     <div className="update-container">

@@ -9,6 +9,7 @@ const ProfileUpdate = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     FirstName: '',
     LastName: '',
@@ -25,6 +26,7 @@ const ProfileUpdate = () => {
   
 
   useEffect(() => {
+    setLoading(true);
     const token = sessionStorage.getItem('token');
 
     fetch('https://thomasapi.eu/api/profile', {
@@ -42,8 +44,9 @@ const ProfileUpdate = () => {
           ...data,
           Password: '', // Jelszó üresen marad
         });
+        setLoading(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {console.error(err); setLoading(false);});
   }, []);
 
   const handleInputChange = (e) => {
@@ -115,6 +118,11 @@ const ProfileUpdate = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+  if (loading) {
+    return <div className="data-loading">
+      <div>Töltés...</div>
+    </div>
+  }
 
 
   return (
@@ -144,26 +152,30 @@ const ProfileUpdate = () => {
                 onChange={handleInputChange}
               />
             </div>
+            
             <div className="form-group">
-              <label htmlFor="JobTitle">Beosztás:</label>
-              <input
-                type="text"
-                id="JobTitle"
-                name="JobTitle"
-                value={formData.JobTitle || ''}
-                onChange={handleInputChange}
-              />
+              <label htmlFor="JobTitle">Munkakör:</label>
+              <select type="text" id="JobTitle" name="JobTitle" value={formData.JobTitle} onChange={handleInputChange} required >
+                <option value="Ügyvezető Igazgató">Ügyvezető Igazgató</option>
+                <option value="Igazgató Helyettes">Igazgató Helyettes</option>
+                <option value="Raktáros">Raktáros</option>
+                <option value="Értékesítő">Értékesítő</option>
+                <option value="Rendszergazda">Rendszergazda</option>
+              </select>
             </div>
+
+
             <div className="form-group">
-              <label htmlFor="AdminRole">Adminisztrátori szerep:</label>
-              <input
-                type="text"
-                id="AdminRole"
-                name="AdminRole"
-                value={formData.AdminRole || ''}
-                onChange={handleInputChange}
-              />
+              <label htmlFor="AdminRole">Admin szerepkör:</label>
+              <select type="text" id="AdminRole" name="AdminRole" value={formData.AdminRole} onChange={handleInputChange} required >
+                <option value="Tulajdonos">Tulajdonos</option>
+                <option value="Alkalmazott">Alkalmazott</option>
+              </select>
             </div>
+
+
+
+
             <div className="form-group">
               <label htmlFor="ActiveFlag">Aktív:</label>
               <select

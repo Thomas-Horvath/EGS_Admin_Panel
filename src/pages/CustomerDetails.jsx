@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { Link, useParams , useNavigate} from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { img } from '../assets/assets';
 
 const CustomerDetails = () => {
@@ -22,10 +22,12 @@ const CustomerDetails = () => {
       .then((res) => res.json())
       .then((data) => setProfileData(data))
       .catch((err) => console.error(err));
-  }, []);
+  }, [id]);
 
   if (!profileData) {
-    return <div className="data-loading">Töltés...</div>;
+    return <div className="data-loading">
+      <div>Töltés...</div>
+    </div>;
   }
 
   return (

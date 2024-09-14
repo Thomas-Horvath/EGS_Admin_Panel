@@ -11,10 +11,12 @@ const Products = () => {
   const [categoryFilter, setCategoryFilter] = useState('');
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [productIdToDelete, setProductIdToDelete] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const productsPerPage = 10;
 
   const fetchProducts = () => {
+    setLoading(true);
     fetch('https://thomasapi.eu/api/products', {
       method: 'GET',
       headers: {
@@ -33,8 +35,12 @@ const Products = () => {
         } else {
           setFilteredProducts(data); // Szűrés nélküli lista
         }
+        setLoading(false);
       })
-      .catch((error) => console.error('Error fetching products:', error));
+      .catch((error) => {
+        console.error('Error fetching products:', error);
+        setLoading(false);
+      });
   };
 
   const applyFilters = (category) => {
@@ -112,6 +118,13 @@ const Products = () => {
     setShowConfirmDialog(false);
     setProductIdToDelete(null);
   };
+
+
+  if (loading) {
+    return <div className="data-loading">
+      <div>Töltés...</div>
+    </div>
+  }
 
   return (
     <div className="product-page-container">

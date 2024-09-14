@@ -11,10 +11,12 @@ const Admins = () => {
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const [userIdToDelete, setUserIdToDelete] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
+  const [loading, setLoading] = useState(false);
   const usersPerPage = 10;
 
   // Fetch users from API
   const fetchUsers = () => {
+    setLoading(true);
     const token = sessionStorage.getItem('token');
     fetch('https://thomasapi.eu/api/users', {
       method: 'GET',
@@ -31,8 +33,12 @@ const Admins = () => {
         setUsers(admins);
         setCurrentUsers(admins.slice(0, usersPerPage));
         setPageCount(Math.ceil(admins.length / usersPerPage));
+        setLoading(false);
       })
-      .catch((error) => console.error('Error fetching users:', error));
+      .catch((error) => {
+        console.error('Error fetching users:', error);
+        setLoading(false);
+  });
   };
 
   useEffect(() => {
@@ -81,6 +87,13 @@ const Admins = () => {
     setShowConfirmDialog(false); // Bezárjuk a megerősítő ablakot
     setUserIdToDelete(null); // Töröljük a tárolt ID-t
   };
+
+  if (loading) {
+    return <div className="data-loading">
+      <div>Töltés...</div>
+    </div>
+  }
+
 
   return (
     <div className="admins-page-container">
