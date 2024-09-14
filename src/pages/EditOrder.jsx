@@ -230,9 +230,9 @@ const OrderDetails = () => {
                   <h4>{productData[index].BrandName} - {productData[index].Name}</h4>
                   <div className="product-details">
                     <p>Mennyiség: {item.Quantity} db</p>
-                    <button className="btn" onClick={() => updateQuantity(item.ProductID, item.Quantity - 1)} disabled={item.Quantity <= 1}>-</button>
-                    <button className="btn" onClick={() => updateQuantity(item.ProductID, item.Quantity + 1)}>+</button>
-                    <button className="btn" onClick={() => removeProduct(item.ProductID)}>Törlés</button>
+                    <button className="btn order-update-btn" onClick={() => updateQuantity(item.ProductID, item.Quantity - 1)} disabled={item.Quantity <= 1}>-</button>
+                    <button className="btn order-update-btn" onClick={() => updateQuantity(item.ProductID, item.Quantity + 1)}>+</button>
+                    <button className="btn order-update-btn" onClick={() => removeProduct(item.ProductID)}>Törlés</button>
                     <p>Egységár: {item.UnitPrice} Ft</p>
                     <p>Teljes ár: {item.LineTotal} Ft</p>
                   </div>

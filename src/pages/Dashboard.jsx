@@ -177,7 +177,7 @@ const Dashboard = () => {
                     <td>{user.UserID}</td>
                     <td>{user.LastName} {user.FirstName}</td>
                     <td>{user.EmailAddress}</td>
-                    <td>{new Date(user.updatedAt).toLocaleDateString()}</td>
+                    <td>{new Date(user.createdAt).toLocaleDateString()}</td>
                   </tr>
                 ))}
               </tbody>

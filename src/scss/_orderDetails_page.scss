@@ -1,7 +1,7 @@
 .order-details {
     padding: 2rem;
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 1200px;
+    margin: 2rem auto;
     background-color: #f9f9f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -50,7 +50,9 @@
 
             .product-details {
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 2rem;
                 flex-wrap: wrap;
 
                 p {
@@ -71,6 +73,7 @@
         justify-content: center;
         border-top: 2px solid #e0e0e0;
     }
+
     .total-price {
         font-size: 1.5rem;
         color: $error;
@@ -138,4 +141,11 @@
 .error-message {
     color: $error;
     text-align: center;
+}
+
+.order-update-btn {
+    padding: .3rem .5rem;
+    min-width: 2rem;
+    justify-content: center;
+    height: fit-content;
 }

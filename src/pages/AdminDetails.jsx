@@ -34,8 +34,8 @@ const AdminDetails = () => {
 
   if (!profileData) {
     return <div className="data-loading">
-    <div>Töltés...</div>
-  </div>;
+      <div>Töltés...</div>
+    </div>;
   }
 
   if (loading) {
@@ -79,6 +79,12 @@ const AdminDetails = () => {
           </div>
           <div className="profile-info">
             <strong>Cím:</strong> {profileData.Postcode} {profileData.City} {profileData.Address}
+          </div>
+          <div className="profile-info">
+            <strong>Regisztráció dátuma:</strong> {profileData.createdAt ? new Date(profileData.createdAt).toLocaleDateString() : "Ismeretlen"}
+          </div>
+          <div className="profile-info">
+            <strong>Utolsó módosítás dátuma:</strong> {profileData.updatedAt ? new Date(profileData.updatedAt).toLocaleDateString() : "Ismeretlen"}
           </div>
         </div>
 

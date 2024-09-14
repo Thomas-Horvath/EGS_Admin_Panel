@@ -552,27 +552,128 @@ a {
 }
 
 .update-container {
-  padding: 20px;
-  max-width: 1000px;
+  padding: 2rem;
+  max-width: 1400px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
 }
 .update-container h2 {
-  margin-bottom: 20px;
+  margin-bottom: 3rem;
   text-align: center;
+  margin-bottom: 1.2rem;
 }
 .update-container form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 3rem;
+  width: 100%;
+  align-items: center;
+  /* Alapértelmezett checkbox elrejtése */
+}
+.update-container form .form-group {
+  width: 100%;
+  max-width: 320px;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.update-container form .form-group label {
+  margin-bottom: 0.4rem;
+}
+.update-container form .form-group input,
+.update-container form .form-group select,
+.update-container form .form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.8rem;
+}
+.update-container form .form-group select {
+  background: transparent;
+}
+.update-container form .form-group input:focus,
+.update-container form .form-group select:focus,
+.update-container form .form-group textarea:focus {
+  outline: 2px solid #333;
+}
+.update-container form .form-group input[type=file] {
+  width: 100%;
+}
+.update-container form .form-group textarea {
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100px;
+}
+.update-container form .form-group .input-error {
+  outline: 1px solid #b92038;
+}
+.update-container form .form-group .error {
+  color: #b92038;
+  font-size: 0.875em;
+  margin-top: 5px;
+}
+.update-container form .form-group .alert {
+  color: green;
+  font-size: 1em;
+  margin-top: 10px;
+}
+.update-container form .password-wrapper {
+  display: flex;
+}
+.update-container form .password-toggle-btn {
+  box-shadow: none;
+}
+.update-container form .password-toggle-btn:hover {
+  background-color: #b92038;
+  color: #eee;
+}
+.update-container form label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* Térköz a checkbox és a szöveg között */
+}
+.update-container form input[type=checkbox] {
+  display: none;
+}
+.update-container form .custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #bbb;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+.update-container form .custom-checkbox-icon {
+  color: #fff;
+  font-size: 16px;
+  position: absolute;
+}
+.update-container form input[type=checkbox]:checked + .custom-checkbox {
+  background-color: #b92038;
+  /* Háttér színe, ha be van pipálva */
+  border-color: #b92038;
+  /* Keret színe, ha be van pipálva */
+}
+.update-container form input[type=checkbox]:checked + .custom-checkbox .custom-checkbox-icon {
+  color: #fff;
+  /* Pipa színe, ha be van pipálva */
 }
 .update-container form .form-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 4rem;
 }
 .update-container form .form-container .form-group-container {
   flex: 1;
-  min-width: calc(50% - 20px);
+  min-width: 250px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -847,118 +948,6 @@ a {
     font-size: 1rem;
   }
 }
-.update-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  max-width: 600px;
-  margin: 0 auto;
-}
-.update-container h2 {
-  margin-bottom: 1.2rem;
-}
-.update-container form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* Alapértelmezett checkbox elrejtése */
-}
-.update-container form .form-group {
-  width: 100%;
-  max-width: 320px;
-  margin-bottom: 2rem;
-  display: flex;
-  flex-direction: column;
-}
-.update-container form .form-group label {
-  margin-bottom: 0.4rem;
-}
-.update-container form .form-group input,
-.update-container form .form-group select,
-.update-container form .form-group textarea {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #bbb;
-  border-radius: 4px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.8rem;
-}
-.update-container form .form-group select {
-  background: transparent;
-}
-.update-container form .form-group input:focus,
-.update-container form .form-group select:focus,
-.update-container form .form-group textarea:focus {
-  outline: 2px solid #333;
-}
-.update-container form .form-group input[type=file] {
-  width: 100%;
-}
-.update-container form .form-group textarea {
-  font-family: Arial, Helvetica, sans-serif;
-  min-height: 100px;
-}
-.update-container form .form-group .input-error {
-  outline: 1px solid #b92038;
-}
-.update-container form .form-group .error {
-  color: #b92038;
-  font-size: 0.875em;
-  margin-top: 5px;
-}
-.update-container form .form-group .alert {
-  color: green;
-  font-size: 1em;
-  margin-top: 10px;
-}
-.update-container form .password-wrapper {
-  display: flex;
-}
-.update-container form .password-toggle-btn {
-  box-shadow: none;
-}
-.update-container form .password-toggle-btn:hover {
-  background-color: #b92038;
-  color: #eee;
-}
-.update-container form label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  /* Térköz a checkbox és a szöveg között */
-}
-.update-container form input[type=checkbox] {
-  display: none;
-}
-.update-container form .custom-checkbox {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #bbb;
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  cursor: pointer;
-}
-.update-container form .custom-checkbox-icon {
-  color: #fff;
-  font-size: 16px;
-  position: absolute;
-}
-.update-container form input[type=checkbox]:checked + .custom-checkbox {
-  background-color: #b92038;
-  /* Háttér színe, ha be van pipálva */
-  border-color: #b92038;
-  /* Keret színe, ha be van pipálva */
-}
-.update-container form input[type=checkbox]:checked + .custom-checkbox .custom-checkbox-icon {
-  color: #fff;
-  /* Pipa színe, ha be van pipálva */
-}
-
 .orders-page-container {
   display: flex;
   flex-direction: column;
@@ -1064,8 +1053,8 @@ a {
 }
 .order-details {
   padding: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 1200px;
+  margin: 2rem auto;
   background-color: #f9f9f9;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -1108,7 +1097,9 @@ a {
 }
 .order-details .order-summary .summary-item .product-details {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
   flex-wrap: wrap;
 }
 .order-details .order-summary .summary-item .product-details p {
@@ -1184,6 +1175,13 @@ a {
 .error-message {
   color: #b92038;
   text-align: center;
+}
+
+.order-update-btn {
+  padding: 0.3rem 0.5rem;
+  min-width: 2rem;
+  justify-content: center;
+  height: fit-content;
 }
 
 .customers-page-container, .admins-page-container {
