@@ -61,7 +61,7 @@ const Profile = () => {
               <strong>Születési dátum:</strong> {new Date(profileData.BirthDate).toLocaleDateString()}
             </div>
             <div className="profile-info">
-              <strong>Cím:</strong> {profileData.Postcode}, {profileData.City}, {profileData.Address}
+              <strong>Cím:</strong> {profileData.Postcode} {profileData.City} {profileData.Address}
             </div>
           </div>
 

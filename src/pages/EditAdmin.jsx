@@ -21,6 +21,8 @@ const EditAdmin = () => {
     EmailAddress: '',
     PhoneNumber: '',
     BirthDate: '',
+    Postcode: '',
+    City: '',
     Address: '',
     Password: '' // alapértelmezett üres érték
   });
@@ -77,6 +79,8 @@ const EditAdmin = () => {
       EmailAddress,
       PhoneNumber,
       BirthDate,
+      Postcode,
+      City,
       Address,
       Password,
       IsAdmin = true,
@@ -92,6 +96,8 @@ const EditAdmin = () => {
       EmailAddress,
       PhoneNumber,
       BirthDate,
+      Postcode,
+      City,
       Address,
       IsAdmin
     };
@@ -215,8 +221,6 @@ const EditAdmin = () => {
               </div>
             </div>
 
-          </div>
-          <div className="form-group-container">
             <div className="form-group">
               <label htmlFor="UserName">Felhasználónév:</label>
               <input
@@ -227,6 +231,14 @@ const EditAdmin = () => {
                 onChange={handleInputChange}
               />
             </div>
+
+
+            
+          </div>
+          <div className="form-group-container">
+
+
+          
             <div className="form-group">
               <label htmlFor="EmailAddress">Email cím:</label>
               <input
@@ -258,6 +270,28 @@ const EditAdmin = () => {
               />
             </div>
             <div className="form-group">
+              <label htmlFor="Postcode">Irányító szám:</label>
+              <input
+                type="number"
+                min={1}
+                step={1}
+                id="Postcode"
+                name="Postcode"
+                value={formData.Postcode || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="City">Város:</label>
+              <input
+                type="text"
+                id="City"
+                name="City"
+                value={formData.City || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
               <label htmlFor="Address">Cím:</label>
               <input
                 type="text"
@@ -267,6 +301,8 @@ const EditAdmin = () => {
                 onChange={handleInputChange}
               />
             </div>
+
+
           </div>
 
         </div>

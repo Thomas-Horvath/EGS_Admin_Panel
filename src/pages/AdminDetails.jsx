@@ -33,7 +33,9 @@ const AdminDetails = () => {
   }, [id]);
 
   if (!profileData) {
-    return <div className="data-loading">Töltés...</div>;
+    return <div className="data-loading">
+    <div>Töltés...</div>
+  </div>;
   }
 
   if (loading) {
@@ -76,7 +78,7 @@ const AdminDetails = () => {
             <strong>Születési dátum:</strong> {new Date(profileData.BirthDate).toLocaleDateString()}
           </div>
           <div className="profile-info">
-            <strong>Cím:</strong> {profileData.Postcode}, {profileData.City}, {profileData.Address}
+            <strong>Cím:</strong> {profileData.Postcode} {profileData.City} {profileData.Address}
           </div>
         </div>
 

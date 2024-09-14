@@ -20,6 +20,8 @@ const ProfileUpdate = () => {
     EmailAddress: '',
     PhoneNumber: '',
     BirthDate: '',
+    Postcode: '',
+    City: '',
     Address: '',
     Password: '' // alapértelmezett üres érték
   });
@@ -72,6 +74,8 @@ const ProfileUpdate = () => {
       EmailAddress,
       PhoneNumber,
       BirthDate,
+      Postcode,
+      City,
       Address,
       Password,
       IsAdmin = true
@@ -87,6 +91,8 @@ const ProfileUpdate = () => {
       EmailAddress,
       PhoneNumber,
       BirthDate,
+      Postcode,
+      City,
       Address,
       IsAdmin
     };
@@ -210,8 +216,7 @@ const ProfileUpdate = () => {
               </div>
             </div>
 
-          </div>
-          <div className="form-group-container">
+     
             <div className="form-group">
               <label htmlFor="UserName">Felhasználónév:</label>
               <input
@@ -222,6 +227,14 @@ const ProfileUpdate = () => {
                 onChange={handleInputChange}
               />
             </div>
+
+
+            </div>
+            <div className="form-group-container">
+
+
+            
+
             <div className="form-group">
               <label htmlFor="EmailAddress">Email cím:</label>
               <input
@@ -252,6 +265,30 @@ const ProfileUpdate = () => {
                 onChange={handleInputChange}
               />
             </div>
+
+
+            <div className="form-group">
+              <label htmlFor="Postcode">Irányító szám:</label>
+              <input
+                type="number"
+                min={1}
+                step={1}
+                id="Postcode"
+                name="Postcode"
+                value={formData.Postcode || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="City">Város:</label>
+              <input
+                type="text"
+                id="City"
+                name="City"
+                value={formData.City || ''}
+                onChange={handleInputChange}
+              />
+            </div>
             <div className="form-group">
               <label htmlFor="Address">Cím:</label>
               <input
@@ -262,6 +299,8 @@ const ProfileUpdate = () => {
                 onChange={handleInputChange}
               />
             </div>
+
+
           </div>
         </div>
         <div className="massage-container">

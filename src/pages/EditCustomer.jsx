@@ -21,10 +21,12 @@ const EditCustomer = () => {
     EmailAddress: '',
     PhoneNumber: '',
     BirthDate: '',
+    Postcode: '',
+    City: '',
     Address: '',
     Password: '' // alapértelmezett üres érték
   });
-  
+
 
   useEffect(() => {
     setLoading(true);
@@ -51,7 +53,7 @@ const EditCustomer = () => {
       .catch((err) => {
         console.error(err);
         setLoading(false);
-  });
+      });
   }, [id]);
 
   const handleInputChange = (e) => {
@@ -70,12 +72,13 @@ const EditCustomer = () => {
     const {
       FirstName,
       LastName,
-     
       ActiveFlag,
       UserName,
       EmailAddress,
       PhoneNumber,
       BirthDate,
+      Postcode,
+      City,
       Address,
       Password,
       IsAdmin = false,
@@ -89,6 +92,8 @@ const EditCustomer = () => {
       EmailAddress,
       PhoneNumber,
       BirthDate,
+      Postcode,
+      City,
       Address,
       IsAdmin
     };
@@ -192,7 +197,7 @@ const EditCustomer = () => {
               </div>
             </div>
 
-        
+
             <div className="form-group">
               <label htmlFor="UserName">Felhasználónév:</label>
               <input
@@ -205,8 +210,6 @@ const EditCustomer = () => {
             </div>
 
 
-            </div>
-            <div className="form-group-container">
 
 
             <div className="form-group">
@@ -219,6 +222,12 @@ const EditCustomer = () => {
                 onChange={handleInputChange}
               />
             </div>
+
+
+            </div>
+          <div className="form-group-container">
+
+
             <div className="form-group">
               <label htmlFor="PhoneNumber">Telefonszám:</label>
               <input
@@ -240,6 +249,28 @@ const EditCustomer = () => {
               />
             </div>
             <div className="form-group">
+              <label htmlFor="Postcode">Irányító szám:</label>
+              <input
+                type="number"
+                min={1}
+                step={1}
+                id="Postcode"
+                name="Postcode"
+                value={formData.Postcode || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="City">Város:</label>
+              <input
+                type="text"
+                id="City"
+                name="City"
+                value={formData.City || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
               <label htmlFor="Address">Cím:</label>
               <input
                 type="text"
@@ -249,6 +280,8 @@ const EditCustomer = () => {
                 onChange={handleInputChange}
               />
             </div>
+
+
           </div>
 
         </div>
