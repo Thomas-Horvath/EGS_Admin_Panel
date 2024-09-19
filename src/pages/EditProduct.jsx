@@ -127,6 +127,11 @@ const EditProduct = () => {
 
     return newErrors;
   };
+  const handleGoBack = (e) => {
+    e.preventDefault(); // Megakadályozza, hogy a form submit esemény befolyásolja
+    navigate(-1);
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -169,13 +174,15 @@ const EditProduct = () => {
       .then(res => res.json())
       .then(data => {
         setSuccessMessage('A termék sikeresen frissítve!');
-        setTimeout(() => { navigate('/termékek'); }, 2000);
+        setTimeout(() => { navigate(-1); }, 2000);
       })
       .catch(err => {
         console.error(err);
         setSuccessMessage('Hiba történt a frissítés során.');
       });
   };
+
+
 
   if (loading) {
     return <div className="data-loading">
@@ -186,7 +193,7 @@ const EditProduct = () => {
   return (
     <div className="update-container">
       <h2>Termék szerkesztése</h2>
-      <form onSubmit={handleSubmit} noValidate>
+      <form noValidate method='put'>
         <div className="form-container">
           <div className="form-group-container">
             {/* Form mezők */}
@@ -394,8 +401,8 @@ const EditProduct = () => {
         {successMessage && <p className="success">{successMessage}</p>}
 
         <div className="button-group">
-          <button onClick={() => navigate(-1)} className="btn">Vissza</button>
-          <button className='btn' type="submit">Frissítés</button>
+          <button onClick={handleGoBack} className="btn">Vissza</button>
+          <button className='btn' onClick={handleSubmit}>Frissítés</button>
         </div>
       </form>
     </div>

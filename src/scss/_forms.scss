@@ -41,7 +41,7 @@
                 border: 1px solid $bg-grey-1;
                 border-radius: 4px;
                 font-family: Arial, Helvetica, sans-serif;
-                font-size: .8rem;
+               
             }
 
             select {
@@ -152,7 +152,7 @@
 
             .form-group-container {
                 flex: 1;
-                min-width: 250px;
+                min-width: 340px;
                 display: flex;
                 flex-direction: column;
                 gap: 15px;
