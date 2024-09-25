@@ -1,4 +1,4 @@
-# Electric Guitar Shop - Admin Pnel
+# Electric Guitar Shop - Admin Panel
  
 ## Weboldal: [electricguitarshop.eu/admin](https://thomas-horvath.github.io/EGS_Admin_Panel)
 
