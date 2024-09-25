@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
-
+import { FaTrashAlt } from 'react-icons/fa';
 
 
 const Newsletter = () => {
@@ -168,7 +168,7 @@ const Newsletter = () => {
                                                     onChange={() => handleCheckboxChange(user.email, user.isActive)}
                                                 /> Felíratkozás ki- és bekapcsolása
                                             </label>
-                                            <button className="icon-button delete-button" onClick={() => handleDelete(user.email)}>Törlés</button>
+                                            <button title='Törlés' className="icon-button delete-button" onClick={() => handleDelete(user.email)}><FaTrashAlt /> </button>
                                         </div>
                                     </td>
                                 </tr>
