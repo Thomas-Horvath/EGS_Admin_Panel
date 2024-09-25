@@ -1,131 +1,185 @@
 // Base styles for both Customers and Admins pages
-.customers-page-container, .admins-page-container {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
+.customers-page-container,
+.admins-page-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 100%;
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  .table-wrapper {
+    overflow-x: auto; // Csak a táblázat görgethető
+    // min-height: 70vh;
+  }
+
+  .users-table {
     width: 100%;
-  
-    h1 {
-      margin-bottom: 1rem;
-    }
-    .table-wrapper {
-      overflow-x: auto; // Csak a táblázat görgethető
-      // min-height: 70vh;
-    }
-  
-    .users-table {
-      width: 100%;
-      min-width: 600px; // Táblázat minimális szélessége
-      border-collapse: collapse;
-      margin-bottom: 20px;
-  
-      th,
-      td {
-        font-size: 14px;
-        padding: 8px;
-        border: 1px solid $table-border;
-        text-align: left;
-        white-space: nowrap; // A cellák tartalma egy sorban marad
-      }
-  
-      tr:hover {
-        background-color: rgba($main-color, 0.5);
-      }
-    }
-  
-    .icon-button {
-      padding: 0.5rem 0.7rem;
-      background-color: $main-color;
-      color: $white;
-      border: none;
-      border-radius: 4px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      margin-right: 0.7rem;
-      cursor: pointer;
-  
-      &:hover {
-        background-color: darken($main-color, 10%);
-      }
-  
-      &.delete-button {
-        background-color: #e74c3c;
-  
-        &:hover {
-          background-color: #c0392b;
-        }
-      }
-    }
-  
-    .pagination {
+    min-width: 600px; // Táblázat minimális szélessége
+    border-collapse: collapse;
+    margin-bottom: 20px;
+
+    .content-wrapper {
       display: flex;
-      flex-wrap: wrap; // Rugalmas elrendezés több sorhoz, ha szükséges
-      justify-content: center;
-      list-style-type: none;
-      padding: 0;
-      margin: 10px 0;
-  
-      li {
-        margin: 2px;
-  
-        &.active {
-          background-color: $main-color;
-          border-radius: 4px;
-        }
-  
-        &.active a {
-          color: $white;
-        }
-  
-        a {
-          padding: 6px 10px;
-          font-size: 14px;
-          border: 1px solid $main-color;
-          color: $main-color;
-          text-decoration: none;
-          border-radius: 4px;
-          display: block;
-          text-align: center;
-          cursor: pointer;
-        }
+      align-items: center;
+      gap: 3rem;
+    }
+    label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+
+    th,
+    td {
+      font-size: 14px;
+      padding: 8px;
+      border: 1px solid $table-border;
+      text-align: left;
+      white-space: nowrap; // A cellák tartalma egy sorban marad
+    }
+
+    tr:hover {
+      background-color: rgba($main-color, 0.5);
+    }
+  }
+
+  .icon-button {
+    padding: 0.5rem 0.7rem;
+    background-color: $main-color;
+    color: $white;
+    border: none;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    margin-right: 0.7rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken($main-color, 10%);
+    }
+
+    &.delete-button {
+      background-color: #e74c3c;
+
+      &:hover {
+        background-color: #c0392b;
       }
     }
   }
-  
-  // Responsive styles for larger screens
-  @media (min-width: 768px) {
-    .customers-page-container, .admins-page-container {
-      padding: 3rem;
+
+  .pagination {
+    display: flex;
+    flex-wrap: wrap; // Rugalmas elrendezés több sorhoz, ha szükséges
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+
+    li {
+      margin: 2px;
+
+      &.active {
+        background-color: $main-color;
+        border-radius: 4px;
+      }
+
+      &.active a {
+        color: $white;
+      }
+
+      a {
+        padding: 6px 10px;
+        font-size: 14px;
+        border: 1px solid $main-color;
+        color: $main-color;
+        text-decoration: none;
+        border-radius: 4px;
+        display: block;
+        text-align: center;
+        cursor: pointer;
+      }
     }
-    .users-page-container {
-      .filter-container {
-        flex-direction: row;
-        gap: 20px;
-  
-        .input-group {
-          flex: 1;
-  
-          input[type="text"],
-          select {
-            width: auto;
-          }
+  }
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  min-width: 20px;
+  height: 20px;
+  background-color: white;
+  /* Alap háttérszín */
+  border: 2px solid $main-color;
+  /* Alap keretszín */
+  cursor: pointer;
+  position: relative;
+  margin: auto .5rem;
+}
+
+
+
+input[type="checkbox"]:checked {
+  background-color: $main-color;
+  /* Kitöltés színe, ha be van pipálva */
+  border-color: $main-color;
+  /* Keret színe, ha be van pipálva */
+  padding: .2rem;
+
+}
+
+input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  width: 4px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg);
+
+}
+
+// Responsive styles for larger screens
+@media (min-width: 768px) {
+
+  .customers-page-container,
+  .admins-page-container {
+    padding: 3rem;
+  }
+
+  .users-page-container {
+    .filter-container {
+      flex-direction: row;
+      gap: 20px;
+
+      .input-group {
+        flex: 1;
+
+        input[type="text"],
+        select {
+          width: auto;
         }
-  
-        .button-group {
-          flex-direction: column;
-          align-items: flex-end;
-          justify-content: center;
-          gap: 0.5rem;
+      }
+
+      .button-group {
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100px;
+
+        .btn {
           width: 100px;
-  
-          .btn {
-            width: 100px;
-            display: block;
-          }
+          display: block;
         }
       }
     }
   }
-  
+
+}

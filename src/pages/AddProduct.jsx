@@ -167,7 +167,7 @@ const AddProduct = () => {
 
             <div className="form-group">
               <label htmlFor="Modell">Modell:</label>
-              <select className={errors.Name ? 'input-error' : ''} id="Modell" name="Model" value={formData.Model} onChange={handleInputChange} required>
+              <select className={errors.Model ? 'input-error' : ''} id="Modell" name="Model" value={formData.Model} onChange={handleInputChange} required>
                 <option value="">Válassz modellt</option>
                 {models.map(model => <option key={model} value={model}>{model}</option>)}
               </select>
@@ -199,7 +199,7 @@ const AddProduct = () => {
 
             <div className="form-group">
               <label htmlFor="CategoryName">Kategória:</label>
-              <select className={errors.Name ? 'input-error' : ''} id="CategoryName" name="CategoryName" value={category} onChange={handleCategoryChange} required>
+              <select className={errors.CategoryName ? 'input-error' : ''} id="CategoryName" name="CategoryName" value={category} onChange={handleCategoryChange} required>
                 <option value="">Válassz kategóriát</option>
                 <option value="Gitár">Gitárok</option>
                 <option value="Erősítő">Erősítők</option>
@@ -213,7 +213,7 @@ const AddProduct = () => {
 
             <div className="form-group">
               <label htmlFor="SubCategoryName">Alkategória:</label>
-              <select className={errors.Name ? 'input-error' : ''} id="SubCategoryName" name="SubCategoryName" value={subCategory} onChange={handleSubCategoryChange} required>
+              <select className={errors.SubCategoryName ? 'input-error' : ''} id="SubCategoryName" name="SubCategoryName" value={subCategory} onChange={handleSubCategoryChange} required>
                 <option value="">Válassz alkategóriát</option>
                 {(subCategories[category] || []).map(subCat => (
                   <option key={subCat} value={subCat}>{categoryMap[subCat]}</option>
@@ -226,7 +226,7 @@ const AddProduct = () => {
 
             <div className="form-group">
               <label htmlFor="BrandName">Márka:</label>
-              <select className={errors.Name ? 'input-error' : ''} id="BrandName" name="BrandName" value={formData.BrandName} onChange={handleInputChange} required>
+              <select className={errors.BrandName ? 'input-error' : ''} id="BrandName" name="BrandName" value={formData.BrandName} onChange={handleInputChange} required>
                 <option value="">Válassz márkát</option>
                 {brands.map(brand => <option key={brand} value={brand}>{brand}</option>)}
               </select>
@@ -240,7 +240,7 @@ const AddProduct = () => {
 
             <div className="form-group">
               <label htmlFor="Price">Ár:</label>
-              <input className={errors.Name ? 'input-error' : ''} type="number" id="Price" name="Price" min={0} step={1000} value={formData.Price} onChange={handleInputChange} required />
+              <input className={errors.Price ? 'input-error' : ''} type="number" id="Price" name="Price" min={0} step={1000} value={formData.Price} onChange={handleInputChange} required />
               {errors.Price && <p className="error">{errors.Price}</p>}
             </div>
 
@@ -288,7 +288,7 @@ const AddProduct = () => {
 
             <div className="form-group">
               <label htmlFor="ProductPhoto">Termék kép:</label>
-              <input className={errors.Name ? 'input-error' : ''} type="file" id="ProductPhoto" name="productPhoto" onChange={handleInputChange} accept="image/*" required />
+              <input className={errors.productPhoto ? 'input-error' : ''} type="file" id="ProductPhoto" name="productPhoto" onChange={handleInputChange} accept="image/*" required />
               {errors.productPhoto && <p className="error">{errors.productPhoto}</p>}
             </div>
 

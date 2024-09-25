@@ -18,15 +18,19 @@
     form {
         display: flex;
         flex-direction: column;
-        gap: 3rem;
-        width: 100%;
+        width: 100%; 
         align-items: center;
 
+        .form-group-container {
+            align-items: center;
+        }
         .form-group {
             width: 100%;
             max-width: 320px;
             margin-bottom: 2rem;
             display: flex;
+            // align-items: center;
+           
             flex-direction: column;
 
             label {
@@ -69,17 +73,17 @@
                 outline: 1px solid $error;
             }
 
-            .error {
-                color: $error;
-                font-size: 0.875em;
-                margin-top: 5px;
-            }
-
+            
             .alert {
                 color: $succsess;
                 font-size: 1em;
                 margin-top: 10px;
             }
+        }
+        .error {
+            color: $error;
+            font-size: 0.875em;
+            margin-top: 5px;
         }
 
         // password 

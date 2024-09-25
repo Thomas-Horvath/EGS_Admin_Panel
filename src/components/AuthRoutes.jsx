@@ -21,6 +21,7 @@ import Sidebar from './Sidebar';
 import ProductDetails from '../pages/ProductDetails';
 import AdminDetails from '../pages/AdminDetails';
 import CustomerDetails from '../pages/CustomerDetails';
+import Newsletter from '../pages/Newsletter';
 
 const AuthRoutes = ({ isOpen, setIsOpen }) => {
   const { isLoggedIn } = useContext(AuthContext);
@@ -55,6 +56,7 @@ const AuthRoutes = ({ isOpen, setIsOpen }) => {
                 <Route path="/adminok/szerkesztés/:id" element={<EditAdmin />} />
                 <Route path="/profil" element={<Profile />} />
                 <Route path="/profil/szerkesztés" element={<ProfileUpdate />} />
+                <Route path="/hírlevél" element={<Newsletter />} />
                 <Route path="*" element={<Navigate to="/home" />} /> {/* Ha az útvonal nem létezik, átirányítás a főoldalra */}
               </Routes>
             </div>

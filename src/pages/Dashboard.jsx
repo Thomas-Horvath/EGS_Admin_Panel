@@ -77,7 +77,7 @@ const Dashboard = () => {
   }
 
   // Szűrés az admin felhasználók kizárásával
-  const userCount = data.users.filter(user => !user.isAdmin).length;
+  const userCount = data.users.filter(user => !user.IsAdmin).length;
 
   // Összes rendelés
   const orderCount = data.orders.length;

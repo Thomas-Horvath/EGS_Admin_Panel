@@ -5,6 +5,7 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 import { img } from '../assets/assets';
 import { AiOutlineClose } from 'react-icons/ai';
+import { FaRegNewspaper } from "react-icons/fa6";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const [openMenu, setOpenMenu] = useState(null); // The currently open submenu
@@ -135,6 +136,17 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                 <li><Link to="/adminok/regisztráció" onClick={handleLinkClick}>Új admin hozzáadása</Link></li>
               </ul>
             )}
+          </li>
+
+          <li className='menu-items'>
+          <Link
+              to="/hírlevél"
+              className={`menu-items-link  ${activeMenuItem === 'news' ? 'active' : ''}`}
+              onClick={() => handleHomeLinkClick('news')}
+            >
+              <FaRegNewspaper className='menu-icons' />
+              {isOpen && <span className="menu-text">Hírlevél</span>}
+            </Link>
           </li>
         </ul>
       </div>

@@ -1,12 +1,14 @@
 import React, { useEffect, useState, } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { parsePhoneNumber } from 'libphonenumber-js';
 
 
 const EditCustomer = () => {
 
 
   const [message, setMessage] = useState('');
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const { id } = useParams();
   const [showPassword, setShowPassword] = useState(false);
@@ -26,6 +28,37 @@ const EditCustomer = () => {
     Address: '',
     Password: '' // alapértelmezett üres érték
   });
+
+
+
+
+  const validateForm = () => {
+    let errors = {};
+    // Kötelező mezők ellenőrzése
+    if (!formData.FirstName) errors.FirstName = 'A keresztnevet kötelező megadni.';
+
+    if (!formData.LastName) errors.LastName = 'A vezetéknév kötelező megadni.';
+
+    if (!formData.UserName) errors.UserName = 'A felhasználónevet kötelező megadni.';
+
+    if (!formData.EmailAddress) errors.EmailAddress = 'Az email címet kötelező megadni.';
+
+
+    // Telefonszám validálása
+    if (formData.PhoneNumber.trim()) {
+      try {
+        const phoneNumber = parsePhoneNumber(formData.PhoneNumber, 'HU'); // Válaszd ki az országot
+        if (!phoneNumber.isValid()) {
+          errors.PhoneNumber = 'Érvénytelen telefonszám.';
+        }
+      } catch (error) {
+        errors.PhoneNumber = 'Érvénytelen telefonszám.';
+      }
+    }
+
+    return errors;
+  };
+
 
 
   useEffect(() => {
@@ -67,6 +100,16 @@ const EditCustomer = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const token = sessionStorage.getItem('token');
+    setMessage('');
+
+    const validationErrors = validateForm();
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
+
+    const formattedPhoneNumber = formData.PhoneNumber ? parsePhoneNumber(formData.PhoneNumber, 'HU').formatInternational() : '';
 
     // Manuálisan készítjük el a payload-ot, nem küldjük el az _id-t
     const {
@@ -75,7 +118,6 @@ const EditCustomer = () => {
       ActiveFlag,
       UserName,
       EmailAddress,
-      PhoneNumber,
       BirthDate,
       Postcode,
       City,
@@ -90,7 +132,7 @@ const EditCustomer = () => {
       ActiveFlag,
       UserName,
       EmailAddress,
-      PhoneNumber,
+      PhoneNumber: formattedPhoneNumber,
       BirthDate,
       Postcode,
       City,
@@ -137,7 +179,7 @@ const EditCustomer = () => {
 
   return (
     <div className="update-container">
-      <h2>Profil szerkesztése</h2>
+      <h2>Vásárló szerkesztése</h2>
 
       <form onSubmit={handleSubmit}>
         <div className="form-container">
@@ -145,22 +187,28 @@ const EditCustomer = () => {
             <div className="form-group">
               <label htmlFor="FirstName">Keresztnév:</label>
               <input
+                className={errors.FirstName ? 'input-error' : ''}
                 type="text"
                 id="FirstName"
                 name="FirstName"
                 value={formData.FirstName || ''}
                 onChange={handleInputChange}
+                placeholder='Keresztnév'
               />
+              {errors.FirstName && <p className="error">{errors.FirstName}</p>}
             </div>
             <div className="form-group">
               <label htmlFor="LastName">Vezetéknév:</label>
               <input
+                className={errors.LastName ? 'input-error' : ''}
                 type="text"
                 id="LastName"
                 name="LastName"
                 value={formData.LastName || ''}
                 onChange={handleInputChange}
+                placeholder='Vezetéknév'
               />
+              {errors.LastName && <p className="error">{errors.LastName}</p>}
             </div>
 
 
@@ -201,12 +249,15 @@ const EditCustomer = () => {
             <div className="form-group">
               <label htmlFor="UserName">Felhasználónév:</label>
               <input
+                className={errors.UserName ? 'input-error' : ''}
                 type="text"
                 id="UserName"
                 name="UserName"
                 value={formData.UserName || ''}
                 onChange={handleInputChange}
+                placeholder='Felhasználónév'
               />
+              {errors.UserName && <p className="error">{errors.UserName}</p>}
             </div>
 
 
@@ -215,28 +266,34 @@ const EditCustomer = () => {
             <div className="form-group">
               <label htmlFor="EmailAddress">Email cím:</label>
               <input
+                className={errors.EmailAddress ? 'input-error' : ''}
                 type="email"
                 id="EmailAddress"
                 name="EmailAddress"
                 value={formData.EmailAddress || ''}
                 onChange={handleInputChange}
+                placeholder='példa@gmail.com'
               />
+              {errors.EmailAddress && <p className="error">{errors.EmailAddress}</p>}
             </div>
 
 
-            </div>
+          </div>
           <div className="form-group-container">
 
 
             <div className="form-group">
               <label htmlFor="PhoneNumber">Telefonszám:</label>
               <input
+                className={errors.PhoneNumber ? 'input-error' : ''}
                 type="text"
                 id="PhoneNumber"
                 name="PhoneNumber"
                 value={formData.PhoneNumber || ''}
                 onChange={handleInputChange}
+                placeholder='+36 20 123 4567'
               />
+              {errors.PhoneNumber && <p className="error">{errors.PhoneNumber}</p>}
             </div>
             <div className="form-group">
               <label htmlFor="BirthDate">Születési dátum:</label>
@@ -256,8 +313,10 @@ const EditCustomer = () => {
                 step={1}
                 id="Postcode"
                 name="Postcode"
+                maxLength="4"
                 value={formData.Postcode || ''}
                 onChange={handleInputChange}
+                placeholder='Irányító szám'
               />
             </div>
             <div className="form-group">
@@ -268,6 +327,7 @@ const EditCustomer = () => {
                 name="City"
                 value={formData.City || ''}
                 onChange={handleInputChange}
+                placeholder='Város'
               />
             </div>
             <div className="form-group">
@@ -278,6 +338,7 @@ const EditCustomer = () => {
                 name="Address"
                 value={formData.Address || ''}
                 onChange={handleInputChange}
+                placeholder='Cím'
               />
             </div>
 

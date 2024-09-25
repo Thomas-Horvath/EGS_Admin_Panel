@@ -568,10 +568,12 @@ a {
 .update-container form {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
   width: 100%;
   align-items: center;
   /* Alapértelmezett checkbox elrejtése */
+}
+.update-container form .form-group-container {
+  align-items: center;
 }
 .update-container form .form-group {
   width: 100%;
@@ -610,15 +612,15 @@ a {
 .update-container form .form-group .input-error {
   outline: 1px solid #b92038;
 }
-.update-container form .form-group .error {
-  color: #b92038;
-  font-size: 0.875em;
-  margin-top: 5px;
-}
 .update-container form .form-group .alert {
   color: green;
   font-size: 1em;
   margin-top: 10px;
+}
+.update-container form .error {
+  color: #b92038;
+  font-size: 0.875em;
+  margin-top: 5px;
 }
 .update-container form .password-wrapper {
   display: flex;
@@ -1183,26 +1185,43 @@ a {
   height: fit-content;
 }
 
-.customers-page-container, .admins-page-container {
+.customers-page-container,
+.admins-page-container {
   display: flex;
   flex-direction: column;
   padding: 1rem;
   width: 100%;
 }
-.customers-page-container h1, .admins-page-container h1 {
+.customers-page-container h1,
+.admins-page-container h1 {
   margin-bottom: 1rem;
 }
-.customers-page-container .table-wrapper, .admins-page-container .table-wrapper {
+.customers-page-container .table-wrapper,
+.admins-page-container .table-wrapper {
   overflow-x: auto;
 }
-.customers-page-container .users-table, .admins-page-container .users-table {
+.customers-page-container .users-table,
+.admins-page-container .users-table {
   width: 100%;
   min-width: 600px;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
+.customers-page-container .users-table .content-wrapper,
+.admins-page-container .users-table .content-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+.customers-page-container .users-table label,
+.admins-page-container .users-table label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
 .customers-page-container .users-table th,
-.customers-page-container .users-table td, .admins-page-container .users-table th,
+.customers-page-container .users-table td,
+.admins-page-container .users-table th,
 .admins-page-container .users-table td {
   font-size: 14px;
   padding: 8px;
@@ -1210,10 +1229,12 @@ a {
   text-align: left;
   white-space: nowrap;
 }
-.customers-page-container .users-table tr:hover, .admins-page-container .users-table tr:hover {
+.customers-page-container .users-table tr:hover,
+.admins-page-container .users-table tr:hover {
   background-color: rgba(185, 32, 56, 0.5);
 }
-.customers-page-container .icon-button, .admins-page-container .icon-button {
+.customers-page-container .icon-button,
+.admins-page-container .icon-button {
   padding: 0.5rem 0.7rem;
   background-color: #b92038;
   color: #fff;
@@ -1226,16 +1247,20 @@ a {
   margin-right: 0.7rem;
   cursor: pointer;
 }
-.customers-page-container .icon-button:hover, .admins-page-container .icon-button:hover {
+.customers-page-container .icon-button:hover,
+.admins-page-container .icon-button:hover {
   background-color: #8e182b;
 }
-.customers-page-container .icon-button.delete-button, .admins-page-container .icon-button.delete-button {
+.customers-page-container .icon-button.delete-button,
+.admins-page-container .icon-button.delete-button {
   background-color: #e74c3c;
 }
-.customers-page-container .icon-button.delete-button:hover, .admins-page-container .icon-button.delete-button:hover {
+.customers-page-container .icon-button.delete-button:hover,
+.admins-page-container .icon-button.delete-button:hover {
   background-color: #c0392b;
 }
-.customers-page-container .pagination, .admins-page-container .pagination {
+.customers-page-container .pagination,
+.admins-page-container .pagination {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -1243,17 +1268,21 @@ a {
   padding: 0;
   margin: 10px 0;
 }
-.customers-page-container .pagination li, .admins-page-container .pagination li {
+.customers-page-container .pagination li,
+.admins-page-container .pagination li {
   margin: 2px;
 }
-.customers-page-container .pagination li.active, .admins-page-container .pagination li.active {
+.customers-page-container .pagination li.active,
+.admins-page-container .pagination li.active {
   background-color: #b92038;
   border-radius: 4px;
 }
-.customers-page-container .pagination li.active a, .admins-page-container .pagination li.active a {
+.customers-page-container .pagination li.active a,
+.admins-page-container .pagination li.active a {
   color: #fff;
 }
-.customers-page-container .pagination li a, .admins-page-container .pagination li a {
+.customers-page-container .pagination li a,
+.admins-page-container .pagination li a {
   padding: 6px 10px;
   font-size: 14px;
   border: 1px solid #b92038;
@@ -1265,8 +1294,42 @@ a {
   cursor: pointer;
 }
 
+input[type=checkbox] {
+  appearance: none;
+  min-width: 20px;
+  height: 20px;
+  background-color: white;
+  /* Alap háttérszín */
+  border: 2px solid #b92038;
+  /* Alap keretszín */
+  cursor: pointer;
+  position: relative;
+  margin: auto 0.5rem;
+}
+
+input[type=checkbox]:checked {
+  background-color: #b92038;
+  /* Kitöltés színe, ha be van pipálva */
+  border-color: #b92038;
+  /* Keret színe, ha be van pipálva */
+  padding: 0.2rem;
+}
+
+input[type=checkbox]:checked::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  width: 4px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg);
+}
+
 @media (min-width: 768px) {
-  .customers-page-container, .admins-page-container {
+  .customers-page-container,
+  .admins-page-container {
     padding: 3rem;
   }
   .users-page-container .filter-container {
