@@ -17,7 +17,7 @@ const Newsletter = () => {
         setLoading(true);
         const token = sessionStorage.getItem('token');
 
-        fetch('https://thomasapi.eu/api/newslettersAll', {
+        fetch(`${process.env.REACT_APP_API_URL}/api/newslettersAll`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8',
@@ -60,7 +60,7 @@ const Newsletter = () => {
 
 
         // Küldj PUT kérést az isActive mező frissítéséhez
-        fetch(`https://thomasapi.eu/api/newsletterUpdate`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/newsletterUpdate`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8',
@@ -94,7 +94,7 @@ const Newsletter = () => {
     const handleDelete = (email) => {
         const token = sessionStorage.getItem('token');
 
-        fetch(`https://thomasapi.eu/api/newsletterDelete`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/newsletterDelete`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8',

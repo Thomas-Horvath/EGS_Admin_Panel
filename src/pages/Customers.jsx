@@ -18,7 +18,7 @@ const Customers = () => {
   const fetchUsers = () => {
     setLoading(true);
     const token = sessionStorage.getItem('token');
-    fetch('https://thomasapi.eu/api/users', {
+    fetch(`${process.env.REACT_APP_API_URL}/api/users`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -64,7 +64,7 @@ const Customers = () => {
 
   const deleteCustomer = () => {
     const token = sessionStorage.getItem('token');
-    fetch(`https://thomasapi.eu/api/user/${userIdToDelete}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/api/user/${userIdToDelete}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`,

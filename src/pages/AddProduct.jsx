@@ -131,7 +131,7 @@ const AddProduct = () => {
     const token = sessionStorage.getItem('token');
 
 
-    fetch('https://thomasapi.eu/api/newproduct', {
+    fetch(`${process.env.REACT_APP_API_URL}/api/newproduct`, {
       method: 'POST',
       body: formDataToSend,
       headers: {

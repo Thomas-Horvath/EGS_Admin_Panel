@@ -7,7 +7,7 @@ const ProductDetails = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`https://thomasapi.eu/api/product/${id}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/api/product/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8',

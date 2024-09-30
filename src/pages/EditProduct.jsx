@@ -54,7 +54,7 @@ const EditProduct = () => {
   useEffect(() => {
     setLoading(true);
     // Termék adatainak lekérése az API-ból
-    fetch(`https://thomasapi.eu/api/product/${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/api/product/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -163,7 +163,7 @@ const EditProduct = () => {
 
     const token = sessionStorage.getItem('token');
 
-    fetch(`https://thomasapi.eu/api/productupdate/${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/api/productupdate/${id}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`

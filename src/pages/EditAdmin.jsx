@@ -65,7 +65,7 @@ const EditAdmin = () => {
     setLoading(true);
     const token = sessionStorage.getItem('token');
 
-    fetch(`https://thomasapi.eu/api/user/${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/api/user/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -149,7 +149,7 @@ const EditAdmin = () => {
     }
 
 
-    fetch(`https://thomasapi.eu/api/user/${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/api/user/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',

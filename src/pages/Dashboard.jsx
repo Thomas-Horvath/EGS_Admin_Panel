@@ -16,9 +16,9 @@ const Dashboard = () => {
       const token = sessionStorage.getItem('token');
 
       // Az API végpontok URL-jei
-      const usersUrl = 'https://thomasapi.eu/api/users';
-      const ordersUrl = 'https://thomasapi.eu/api/orders';
-      const productsUrl = 'https://thomasapi.eu/api/products';
+      const usersUrl = `${process.env.REACT_APP_API_URL}/api/users`;
+      const ordersUrl = `${process.env.REACT_APP_API_URL}/api/orders`;
+      const productsUrl = `${process.env.REACT_APP_API_URL}/api/products`;
 
       // Header információk beállítása
       const headers = {

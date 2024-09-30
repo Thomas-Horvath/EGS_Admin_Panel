@@ -761,6 +761,7 @@ a {
   font-size: 16px;
   width: 100%;
   box-sizing: border-box;
+  cursor: pointer;
 }
 .product-page-container .filter-container .button-group {
   display: flex;

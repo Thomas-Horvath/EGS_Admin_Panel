@@ -19,7 +19,7 @@ const Orders = () => {
   const fetchOrders = () => {
     setLoading(true);
     const token = sessionStorage.getItem('token');
-    fetch('https://thomasapi.eu/api/orders', {
+    fetch(`${process.env.REACT_APP_API_URL}/api/orders`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',

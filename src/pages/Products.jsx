@@ -17,7 +17,7 @@ const Products = () => {
 
   const fetchProducts = () => {
     setLoading(true);
-    fetch('https://thomasapi.eu/api/products', {
+    fetch(`${process.env.REACT_APP_API_URL}/api/products`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -100,7 +100,7 @@ const Products = () => {
 
   const deleteProduct = () => {
     const token = sessionStorage.getItem('token');
-    fetch(`https://thomasapi.eu/api/product/${productIdToDelete}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/api/product/${productIdToDelete}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${token}`,

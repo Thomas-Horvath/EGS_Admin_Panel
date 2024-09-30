@@ -86,7 +86,7 @@ const AddAdmin = () => {
     console.log(updateData);
     const token = sessionStorage.getItem('token');
 
-    fetch('https://thomasapi.eu/api/adminregister', {
+    fetch(`${process.env.REACT_APP_API_URL}/api/adminregister`, {
       method: 'POST',
       body: JSON.stringify(formData),
       headers: {

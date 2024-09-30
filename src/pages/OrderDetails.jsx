@@ -14,7 +14,7 @@ const OrderDetails = () => {
     const token = sessionStorage.getItem('token');
 
     // Fetch the order data
-    const fetchOrder = fetch(`https://thomasapi.eu/api/order/${id}`, {
+    const fetchOrder = fetch(`${process.env.REACT_APP_API_URL}/api/order/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
@@ -36,7 +36,7 @@ const OrderDetails = () => {
       }
 
       // Fetch customer data
-      const fetchCustomer = fetch(`https://thomasapi.eu/api/user/${order.CustomerID}`, {
+      const fetchCustomer = fetch(`${process.env.REACT_APP_API_URL}/api/user/${order.CustomerID}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -48,7 +48,7 @@ const OrderDetails = () => {
       // Fetch all products in parallel
       const fetchProducts = Promise.all(
         order.OrderItems.map((item) =>
-          fetch(`https://thomasapi.eu/api/product/${item.ProductID}`, {
+          fetch(`${process.env.REACT_APP_API_URL}/api/product/${item.ProductID}`, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json; charset=UTF-8',

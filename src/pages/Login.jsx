@@ -32,7 +32,7 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch('https://thomasapi.eu/api/adminlogin', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/adminlogin`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json; charset=UTF-8"
