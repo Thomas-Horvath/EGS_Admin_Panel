@@ -82,6 +82,10 @@ a {
 
 }
 
+a , button , .icon-container, .hamburger-icon, .menu-items-link , .close-btn , #select{
+    -webkit-tap-highlight-color: transparent;
+}
+
 
 @import 'login_page';
 @import 'sidebar';

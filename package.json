@@ -23,6 +23,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "sass": "sass --no-source-map --watch src/scss/index.scss src/index.css",
+    "sass-prod": "sass --no-source-map --style=compressed src/scss/index.scss src/index.css",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
